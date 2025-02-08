@@ -1,0 +1,64 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-950 text-gray-200 font-sans;
+  background: radial-gradient(circle at center, #0d0d0d, #1a1a1a);
+  overflow-x: hidden;
+}
+
+nav {
+  @apply bg-gray-800 text-gray-300 shadow-lg backdrop-blur-md bg-opacity-70 fixed w-full z-50;
+}
+
+a {
+  @apply text-purple-400 hover:text-cyan-400 transition duration-300 ease-in-out;
+}
+
+h1, h2, h3 {
+  background: linear-gradient(90deg, #9b59b6, #00d4ff, #ff6ec4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 3s infinite ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
