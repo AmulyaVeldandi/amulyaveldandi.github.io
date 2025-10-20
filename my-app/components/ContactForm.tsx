@@ -21,6 +21,7 @@ export default function ContactForm() {
     <form
       onSubmit={handleSubmit}
       className="relative flex flex-col gap-4 rounded-3xl border card-border bg-[color:var(--surface-chip-strong)] p-6 sm:p-8"
+      data-reveal
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col text-left text-xs uppercase tracking-[0.3em] text-slate-300/80">

@@ -98,16 +98,20 @@ export default function NeuralBackground() {
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const isMobile = width <= MOBILE_BREAKPOINT;
+    let isMobile = width <= MOBILE_BREAKPOINT;
 
-    const counts = {
-      nodes: isMobile ? 18 : 38,
-      particles: isMobile ? 18 : 40,
-      sparks: isMobile ? 32 : 56,
-      beams: isMobile ? 2 : 3,
-    } as const;
+    const getCounts = (reduced: boolean) => ({
+      nodes: reduced ? (isMobile ? 10 : 20) : (isMobile ? 18 : 38),
+      particles: reduced ? (isMobile ? 10 : 18) : (isMobile ? 18 : 40),
+      sparks: reduced ? (isMobile ? 18 : 28) : (isMobile ? 32 : 56),
+      beams: reduced ? 1 : isMobile ? 2 : 3,
+    });
+
+    const motionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduceMotion = motionMedia.matches;
+    let counts = getCounts(reduceMotion);
 
     let nodes: Node[] = [];
     let orbits: Orbit[] = [];
@@ -122,6 +126,7 @@ export default function NeuralBackground() {
     let ecgPhase = 0;
     let tick = 0;
     let animationFrame = 0;
+    let pointerAttached = false;
 
     const pointer = { x: 0, y: 0 };
     const pointerTarget = { x: 0, y: 0 };
@@ -525,7 +530,7 @@ export default function NeuralBackground() {
       });
     };
 
-    const render = () => {
+    const renderFrame = () => {
       pointer.x += (pointerTarget.x - pointer.x) * 0.04;
       pointer.y += (pointerTarget.y - pointer.y) * 0.04;
       tick += 0.0014;
@@ -542,7 +547,9 @@ export default function NeuralBackground() {
       drawParticles();
       drawConnectionsAndNodes();
 
-      animationFrame = window.requestAnimationFrame(render);
+      if (!reduceMotion) {
+        animationFrame = window.requestAnimationFrame(renderFrame);
+      }
     };
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -550,34 +557,83 @@ export default function NeuralBackground() {
       pointerTarget.y = (event.clientY / height - 0.5) * (isMobile ? 10 : 16);
     };
 
+    const attachPointer = () => {
+      if (pointerAttached || reduceMotion) return;
+      window.addEventListener("pointermove", handlePointerMove);
+      pointerAttached = true;
+    };
+
+    const detachPointer = () => {
+      if (!pointerAttached) return;
+      window.removeEventListener("pointermove", handlePointerMove);
+      pointerAttached = false;
+    };
+
+    const stopAnimation = () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+    };
+
+    const startAnimation = () => {
+      stopAnimation();
+      if (reduceMotion) {
+        detachPointer();
+        renderFrame();
+      } else {
+        attachPointer();
+        animationFrame = window.requestAnimationFrame(renderFrame);
+      }
+    };
+
     const handleThemeChange = (event: Event) => {
       const detail = (event as CustomEvent<Theme>).detail;
+      counts = getCounts(reduceMotion);
+      stopAnimation();
       initScene(detail);
+      startAnimation();
     };
 
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
+      isMobile = width <= MOBILE_BREAKPOINT;
+      counts = getCounts(reduceMotion);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      stopAnimation();
       initScene(getTheme());
+      startAnimation();
+    };
+
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      reduceMotion = event.matches;
+      counts = getCounts(reduceMotion);
+      stopAnimation();
+      if (reduceMotion) {
+        detachPointer();
+      }
+      initScene(getTheme());
+      startAnimation();
     };
 
     initScene(getTheme());
-    render();
+    startAnimation();
 
-    window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("theme-change", handleThemeChange);
     window.addEventListener("resize", handleResize);
+    motionMedia.addEventListener("change", handleMotionChange);
 
     return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("pointermove", handlePointerMove);
+      stopAnimation();
+      detachPointer();
       window.removeEventListener("theme-change", handleThemeChange);
       window.removeEventListener("resize", handleResize);
+      motionMedia.removeEventListener("change", handleMotionChange);
     };
   }, [mounted]);
 

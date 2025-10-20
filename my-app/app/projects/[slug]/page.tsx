@@ -1,108 +1,167 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { getProject } from '../../../data/projects';
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getProject } from "../../../data/projects";
+import { getCaseStudy } from "../../../data/caseStudies";
 
-interface ProjectPageProps {
-  params: Promise<{ slug: string }>;
+type CaseStudyPageProps = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
+  const project = getProject(params.slug);
+  if (!project) {
+    return {
+      title: "Project Not Found | Amulya Veldandi",
+    };
+  }
+  return {
+    title: `${project.title} · Case Study | Amulya Veldandi`,
+    description: project.summary,
+  };
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const project = getProject(slug);
-
+export default function ProjectCaseStudyPage({ params }: CaseStudyPageProps) {
+  const project = getProject(params.slug);
   if (!project) {
     notFound();
   }
+  const caseStudy = getCaseStudy(params.slug);
+
+  const fallbackApproach = project.approach ?? [];
+  const fallbackOutcomes = project.results?.map((result) => `${result.metric}: ${result.value}`) ?? [];
+  const heroMedia = caseStudy?.heroMedia;
+  const gallery = caseStudy?.gallery ?? [];
+  const timeline = caseStudy?.timeline ?? "Timeline coming soon";
+  const role = caseStudy?.role ?? "Role forthcoming";
+  const purpose = caseStudy?.purpose ?? project.summary;
+  const objective =
+    caseStudy?.objective ??
+    "Detailed objectives are being finalised. Reach out if you need the full project dossier.";
+  const approach = caseStudy?.approach ?? fallbackApproach;
+  const outcomes =
+    caseStudy?.outcomes ??
+    (fallbackOutcomes.length
+      ? fallbackOutcomes
+      : ["Final outcome summary will be published once the engagement concludes."]);
 
   return (
-    <div className="space-y-12 pb-24">
-      <header className="space-y-4">
-        <p className="text-xs uppercase tracking-[0.4em] text-accent-light opacity-80">Project</p>
-        <h1 className="text-4xl sm:text-5xl font-semibold text-slate-50">
-          {project.title}
-        </h1>
-        <p className="text-slate-300 max-w-3xl leading-relaxed">{project.summary}</p>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="chip-subtle text-[0.7rem] tracking-[0.3em]"
-            >
-              {tag}
-            </span>
-          ))}
+    <div className="case-study">
+      <header className="case-study__hero">
+        <div className="case-study__hero-media">
+          {heroMedia ? (
+            <Image
+              src={heroMedia.src}
+              alt={heroMedia.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
+              className="case-study__hero-image"
+              priority
+            />
+          ) : (
+            <div className="case-study__hero-placeholder" />
+          )}
         </div>
-        {project.badges ? (
-          <div className="flex flex-wrap gap-2 text-xs">
-            {project.badges.map((badge) => (
-              <span
-                key={badge.label}
-                className="chip-subtle text-[0.65rem] tracking-[0.3em]"
-              >
-                {badge.label}: {badge.value}
-              </span>
+        <div className="case-study__intro">
+          <p className="case-study__category">
+            {caseStudy?.category ?? "Case Study"}
+          </p>
+          <h1 className="case-study__title">{project.title}</h1>
+          <p className="case-study__summary">{project.summary}</p>
+          <div className="case-study__meta">
+            <div>
+              <p className="case-study__meta-label">Timeline</p>
+              <p className="case-study__meta-value">{timeline}</p>
+            </div>
+            <div>
+              <p className="case-study__meta-label">Role</p>
+              <p className="case-study__meta-value">{role}</p>
+            </div>
+          </div>
+          <Link href="/#projects" className="case-study__back-link">
+            ← Back to all projects
+          </Link>
+        </div>
+      </header>
+
+      <section className="case-study__purpose">
+        <div>
+          <h2>Purpose</h2>
+          <p>{purpose}</p>
+        </div>
+        <div>
+          <h2>Objective</h2>
+          <p>{objective}</p>
+        </div>
+      </section>
+
+      <section className="case-study__approach">
+        <div className="case-study__section-header">
+          <h2>Approach</h2>
+          <p>Evidence-backed process that translated prototypes into measurable impact.</p>
+        </div>
+        <ol>
+          {approach.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="case-study__outcomes">
+        <div className="case-study__section-header">
+          <h2>Final Outcomes</h2>
+          <p>Highlights from the delivery, paired with the metrics teams cared about most.</p>
+        </div>
+        <ul>
+          {outcomes.map((outcome) => (
+            <li key={outcome}>{outcome}</li>
+          ))}
+        </ul>
+        {project.results?.length ? (
+          <div className="case-study__metrics">
+            {project.results.map((result) => (
+              <div key={result.metric + result.value} className="case-study__metric-card">
+                <p className="case-study__metric-label">{result.metric}</p>
+                <p className="case-study__metric-value">{result.value}</p>
+                {result.detail ? <p className="case-study__metric-detail">{result.detail}</p> : null}
+              </div>
             ))}
           </div>
         ) : null}
-      </header>
-
-      <section className="section-card rounded-3xl p-8 sm:p-10 space-y-6">
-        <h2 className="text-2xl font-semibold text-slate-100">Problem</h2>
-        <p className="text-slate-300 leading-relaxed">{project.problem}</p>
       </section>
 
-      <section className="section-card rounded-3xl p-8 sm:p-10 space-y-6">
-        <h2 className="text-2xl font-semibold text-slate-100">Approach</h2>
-        <ul className="space-y-3 text-slate-300 leading-relaxed list-disc list-inside">
-          {project.approach.map((step) => (
-            <li key={step}>{step}</li>
-          ))}
-        </ul>
-      </section>
+      {gallery.length ? (
+        <section className="case-study__gallery">
+          <div className="case-study__section-header">
+            <h2>Gallery</h2>
+            <p>Storyboard of visuals, dashboards, and artefacts stakeholders received.</p>
+          </div>
+          <div className="case-study__gallery-grid">
+            {gallery.map((media) => (
+              <figure key={media.src} className="case-study__gallery-item">
+                <div className="case-study__gallery-media">
+                  <Image
+                    src={media.src}
+                    alt={media.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 520px"
+                    className="case-study__gallery-image"
+                  />
+                </div>
+                {media.caption ? <figcaption>{media.caption}</figcaption> : null}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
-      <section className="section-card rounded-3xl p-8 sm:p-10 space-y-6">
-        <h2 className="text-2xl font-semibold text-slate-100">Results</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {project.results.map((result) => (
-            <div
-              key={result.metric + result.value}
-              className="rounded-2xl card-border bg-[color:var(--surface-chip)] p-4"
-            >
-              <p className="text-xs uppercase tracking-[0.35em] text-accent-light opacity-80">
-                {result.metric}
-              </p>
-              <p className="mt-2 text-2xl font-semibold text-slate-100">{result.value}</p>
-              {result.detail ? (
-                <p className="mt-1 text-sm text-slate-300/80">{result.detail}</p>
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-card rounded-3xl p-8 sm:p-10 space-y-6">
-        <h2 className="text-2xl font-semibold text-slate-100">Visuals</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {project.visuals.map((visual) => (
-            <div
-              key={visual.title}
-              className="project-placeholder rounded-2xl flex flex-col gap-2 text-left"
-            >
-              <span className="text-sm font-semibold text-slate-100">{visual.title}</span>
-              <span className="text-xs text-slate-300/80 leading-relaxed">
-                {visual.description}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <footer className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <Link href="/" className="btn-outline">
-          ← Back to Portfolio
-        </Link>
-        <Link href={project.github} target="_blank" rel="noreferrer" className="btn-primary">
+      <footer className="case-study__footer">
+        <a href={project.github} className="btn-outline" target="_blank" rel="noreferrer">
           View GitHub Repository
+        </a>
+        <Link href="/#contact" className="btn-primary">
+          Start a Collaboration
         </Link>
       </footer>
     </div>
