@@ -1,0 +1,58 @@
+---
+title: Designing AI for Clinical Safety and Trust
+date: 2024-09-05
+category: Research
+tags:
+  - Clinical AI
+  - Governance
+  - Bias
+summary: Seven guardrails I rely on to keep hospital AI launches safe, equitable, and clinician-first.
+---
+
+import Callout from "@/components/blog/Callout";
+
+<Callout title="Clinical Safety First" tone="info">
+  Every deployment starts with a single question: *who is accountable when this model is wrong?*
+</Callout>
+
+## 1. Baseline the Workflow
+
+Before any model leaves the notebook, I map the current workflow: decision owners, handoffs, timing, and the incentives at play. Without this baseline, you cannot measure improvement—nor can you spot new failure modes introduced by automation.
+
+- Shadow the workflow for a full shift.
+- Capture the artefacts produced today (spreadsheets, sticky notes, dashboards).
+- Quantify the cognitive load: how many clicks, reviews, or escalations does the process demand?
+
+## 2. Align Metrics With Harm Scenarios
+
+Clinical AI needs *bidirectional* metrics: the wins we expect (e.g., ↓ turnaround time) and the harms we fear (e.g., ↑ false positives in vulnerable cohorts). For each metric, I document detection methods, thresholds, and the individual empowered to intervene.
+
+## 3. Stress Test Bias and Drift
+
+I rely on stratified evaluation plans. Slice results by modality, scanner, site, demographic, and workflow context. Drift monitors run nightly and alert Slack channels when deviations cross agreed thresholds.
+
+## 4. Close the Loop With Clinicians
+
+Weekly huddles surface agentic insights paired with manual overrides and near-miss reviews. The key is to build psychologically safe spaces where clinicians can say, "this feels wrong" and have the data team investigate without blame.
+
+## 5. Ship Governance Artefacts
+
+Every deployment ships with:
+
+1. An architecture and data lineage diagram.
+2. An operating manual with failure playbooks.
+3. Contact trees for escalation and rollback.
+
+This is the paperwork that keeps regulators, quality leads, and bedside clinicians aligned.
+
+## 6. Measure Adoption Like a Product Team
+
+We track engagement, perceived usefulness, and outcome deltas through dashboards and quick pulse surveys. Adoption data reveals friction faster than waiting for quarterly reviews.
+
+## 7. Iterate With Humility
+
+Clinical contexts evolve. Models must adapt with them. Treat every deployment as a living service, not a finished product.
+
+<Callout title="Takeaway" tone="success">
+  Safe AI feels calm, boring, and accountable. When teams sleep at night, the metrics follow.
+</Callout>

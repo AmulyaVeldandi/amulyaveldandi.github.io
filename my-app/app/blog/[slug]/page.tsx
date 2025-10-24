@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getBlogPost } from '../../../data/blog';
+import { getBlogPost } from '@/data/blog/posts';
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
@@ -19,11 +19,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <header className="space-y-4 text-center">
         <p className="label-accent opacity-80">Thought Piece</p>
         <h1 className="text-4xl font-semibold text-slate-50">{post.title}</h1>
-        <p className="text-slate-300 max-w-3xl mx-auto leading-relaxed">{post.excerpt}</p>
+        <p className="text-slate-300 max-w-3xl mx-auto leading-relaxed">{post.description}</p>
       </header>
       <div
         className="h-56 rounded-3xl border card-border"
-        style={{ background: post.cover }}
+        style={{ background: `url(${post.coverImage})` }}
       />
       <section className="section-card rounded-3xl p-6 sm:p-8 space-y-4">
         <p className="text-sm text-slate-300/90 leading-relaxed">

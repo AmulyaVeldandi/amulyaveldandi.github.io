@@ -2,19 +2,50 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 
+type Status = {
+  type: "idle" | "loading" | "success" | "error";
+  message?: string;
+};
+
 export default function ContactForm() {
   const [state, setState] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState<Status>({ type: "idle" });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStatus("Thanks for reaching out! I will get back to you soon.");
-    setState({ name: "", email: "", message: "" });
+    setStatus({ type: "loading", message: "Sending message..." });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(state),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setStatus({
+        type: "success",
+        message: "Thanks for reaching out! I will get back to you soon.",
+      });
+      setState({ name: "", email: "", message: "" });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+      });
+    }
   };
 
   return (
@@ -62,13 +93,23 @@ export default function ContactForm() {
       </label>
       <button
         type="submit"
-        className="self-start btn-primary px-6"
+        disabled={status.type === "loading"}
+        className="self-start btn-primary px-6 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Submit
+        {status.type === "loading" ? "Sending..." : "Submit"}
       </button>
-      {status ? (
-        <p className="text-xs uppercase tracking-[0.25em] text-accent-light opacity-80">{status}</p>
-      ) : null}
+      {status.message && (
+        <p
+          className={`text-xs uppercase tracking-[0.25em] ${
+            status.type === "error"
+              ? "text-red-500"
+              : "text-accent-light opacity-80"
+          }`}
+          role={status.type === "error" ? "alert" : "status"}
+        >
+          {status.message}
+        </p>
+      )}
     </form>
   );
 }

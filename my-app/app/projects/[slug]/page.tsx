@@ -3,14 +3,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProject } from "../../../data/projects";
-import { getCaseStudy } from "../../../data/caseStudies";
+import { getCaseStudy } from "../../../data/work/caseStudies";
 
 type CaseStudyPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
-  const project = getProject(params.slug);
+  const { slug } = await params;
+  const project = getProject(slug);
   if (!project) {
     return {
       title: "Project Not Found | Amulya Veldandi",
@@ -22,38 +23,32 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   };
 }
 
-export default function ProjectCaseStudyPage({ params }: CaseStudyPageProps) {
-  const project = getProject(params.slug);
+export default async function ProjectCaseStudyPage({ params }: CaseStudyPageProps) {
+  const { slug } = await params;
+  const project = getProject(slug);
   if (!project) {
     notFound();
   }
-  const caseStudy = getCaseStudy(params.slug);
+  const caseStudy = getCaseStudy(slug);
 
-  const fallbackApproach = project.approach ?? [];
-  const fallbackOutcomes = project.results?.map((result) => `${result.metric}: ${result.value}`) ?? [];
-  const heroMedia = caseStudy?.heroMedia;
-  const gallery = caseStudy?.gallery ?? [];
-  const timeline = caseStudy?.timeline ?? "Timeline coming soon";
-  const role = caseStudy?.role ?? "Role forthcoming";
-  const purpose = caseStudy?.purpose ?? project.summary;
-  const objective =
-    caseStudy?.objective ??
-    "Detailed objectives are being finalised. Reach out if you need the full project dossier.";
-  const approach = caseStudy?.approach ?? fallbackApproach;
-  const outcomes =
-    caseStudy?.outcomes ??
-    (fallbackOutcomes.length
-      ? fallbackOutcomes
-      : ["Final outcome summary will be published once the engagement concludes."]);
+  const heroImage = caseStudy?.heroImage;
+  const heroAlt = caseStudy?.heroAlt ?? project.title;
+  const timeline = caseStudy?.overview?.timeline ?? "Timeline coming soon";
+  const role = caseStudy?.overview?.role ?? "Role forthcoming";
+  const purpose = caseStudy?.description ?? project.summary;
+  const objective = caseStudy?.challenge?.body ?? "Detailed objectives are being finalised. Reach out if you need the full project dossier.";
+  const approachSteps = caseStudy?.approach?.bullets ?? [];
+  const approachBody = caseStudy?.approach?.body ?? "";
+  const outcomes = caseStudy?.impact ?? ["Final outcome summary will be published once the engagement concludes."];
 
   return (
     <div className="case-study">
       <header className="case-study__hero">
         <div className="case-study__hero-media">
-          {heroMedia ? (
+          {heroImage ? (
             <Image
-              src={heroMedia.src}
-              alt={heroMedia.alt}
+              src={heroImage}
+              alt={heroAlt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
               className="case-study__hero-image"
@@ -99,13 +94,15 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyPageProps) {
       <section className="case-study__approach">
         <div className="case-study__section-header">
           <h2>Approach</h2>
-          <p>Evidence-backed process that translated prototypes into measurable impact.</p>
+          <p>{approachBody || "Evidence-backed process that translated prototypes into measurable impact."}</p>
         </div>
-        <ol>
-          {approach.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ol>
+        {approachSteps.length > 0 && (
+          <ol>
+            {approachSteps.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ol>
+        )}
       </section>
 
       <section className="case-study__outcomes">
@@ -114,47 +111,22 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyPageProps) {
           <p>Highlights from the delivery, paired with the metrics teams cared about most.</p>
         </div>
         <ul>
-          {outcomes.map((outcome) => (
-            <li key={outcome}>{outcome}</li>
+          {outcomes.map((outcome, index) => (
+            <li key={index}>{outcome}</li>
           ))}
         </ul>
-        {project.results?.length ? (
+        {caseStudy?.results?.length ? (
           <div className="case-study__metrics">
-            {project.results.map((result) => (
-              <div key={result.metric + result.value} className="case-study__metric-card">
+            {caseStudy.results.map((result, index) => (
+              <div key={index} className="case-study__metric-card">
                 <p className="case-study__metric-label">{result.metric}</p>
-                <p className="case-study__metric-value">{result.value}</p>
-                {result.detail ? <p className="case-study__metric-detail">{result.detail}</p> : null}
+                <p className="case-study__metric-value">{result.after}</p>
+                {result.insight ? <p className="case-study__metric-detail">{result.insight}</p> : null}
               </div>
             ))}
           </div>
         ) : null}
       </section>
-
-      {gallery.length ? (
-        <section className="case-study__gallery">
-          <div className="case-study__section-header">
-            <h2>Gallery</h2>
-            <p>Storyboard of visuals, dashboards, and artefacts stakeholders received.</p>
-          </div>
-          <div className="case-study__gallery-grid">
-            {gallery.map((media) => (
-              <figure key={media.src} className="case-study__gallery-item">
-                <div className="case-study__gallery-media">
-                  <Image
-                    src={media.src}
-                    alt={media.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 45vw, 520px"
-                    className="case-study__gallery-image"
-                  />
-                </div>
-                {media.caption ? <figcaption>{media.caption}</figcaption> : null}
-              </figure>
-            ))}
-          </div>
-        </section>
-      ) : null}
 
       <footer className="case-study__footer">
         <a href={project.github} className="btn-outline" target="_blank" rel="noreferrer">

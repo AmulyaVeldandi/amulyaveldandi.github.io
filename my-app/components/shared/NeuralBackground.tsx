@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Theme = "light" | "dark";
+type Theme = "light" | "dark" | "contrast";
 
 type Node = {
   x: number;
@@ -67,11 +67,17 @@ const darkPalette = [
   "rgba(176, 182, 194, 0.2)",
 ];
 
+const contrastPalette = [
+  "rgba(120, 189, 255, 0.42)",
+  "rgba(250, 132, 255, 0.35)",
+  "rgba(255, 222, 140, 0.38)",
+];
+
 const MOBILE_BREAKPOINT = 720;
 
 function getTheme(): Theme {
   const attr = document.documentElement.dataset.theme;
-  if (attr === "light" || attr === "dark") return attr;
+  if (attr === "light" || attr === "dark" || attr === "contrast") return attr;
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
@@ -122,6 +128,7 @@ export default function NeuralBackground() {
 
     let palette = lightPalette;
     let isDark = false;
+    let isContrast = false;
     let dnaPhase = 0;
     let ecgPhase = 0;
     let tick = 0;
@@ -225,8 +232,9 @@ export default function NeuralBackground() {
     };
 
     const initScene = (theme: Theme) => {
-      isDark = theme === "dark";
-      palette = isDark ? darkPalette : lightPalette;
+      isDark = theme !== "light";
+      isContrast = theme === "contrast";
+      palette = theme === "contrast" ? contrastPalette : theme === "dark" ? darkPalette : lightPalette;
       initNodes();
       initOrbits();
       initSparks();
@@ -243,10 +251,14 @@ export default function NeuralBackground() {
       const centerY = height * 0.42 + pointer.y * 0.25;
       orbits.forEach((orbit, index) => {
         orbit.angle += orbit.speed;
-        const stroke = isDark
+        const stroke = isContrast
+          ? `rgba(180, 210, 255, ${orbit.alpha + 0.1})`
+          : isDark
           ? `rgba(150, 158, 172, ${orbit.alpha})`
           : `rgba(124, 132, 144, ${orbit.alpha})`;
-        const glow = isDark
+        const glow = isContrast
+          ? `rgba(255, 178, 255, ${orbit.alpha + 0.1})`
+          : isDark
           ? `rgba(188, 194, 206, ${orbit.alpha + 0.02})`
           : `rgba(152, 158, 168, ${orbit.alpha + 0.03})`;
 

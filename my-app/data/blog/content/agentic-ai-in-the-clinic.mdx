@@ -1,0 +1,52 @@
+---
+title: Agentic AI Workflows that Respect the Bedside
+date: 2024-06-21
+category: Tutorial
+tags:
+  - Agentic AI
+  - Governance
+  - Workflow
+summary: Mapping agent loops onto radiology operations with explicit human checkpoints.
+---
+
+## Start With The Human Loop
+
+Every agent in our radiology assistant mirrors an existing job to be done: retrieving context, drafting follow-ups, or escalating anomalies. We chart the human workflow first, then identify the moments the agent augments—not replaces—the clinician.
+
+### Retrieval Agent
+
+- Connects PACS, BI, and EHR microservices through FHIR.
+- Normalises patient identifiers with confidence scores.
+- Publishes an evidence bundle for the summarisation agent.
+
+### Summarisation Agent
+
+- Generates structured briefs with imaging, labs, and prior notes.
+- Highlights uncertainty and missing data for clinician review.
+- Requires explicit sign-off before updates touch the EHR.
+
+### Governance Agent
+
+- Aggregates overrides, disagreement reasons, and drift alerts.
+- Sends weekly snapshots to quality leads and service chiefs.
+- Powers retrospective reviews with complete action logs.
+
+## Evaluate Behaviours, Not Just Tokens
+
+We chart evaluation criteria against the failures clinicians care about: missing follow-ups, inaccurate context, tone or empathy gaps. Human raters score each action on usefulness, safety, and bedside appropriateness.
+
+## Auditability As A Feature
+
+Every agent action is explainable:
+
+1. **Traceability** – we store the prompt, context, model version, and response.
+2. **Overrides** – clinicians can edit in-line; the original suggestion remains for audit.
+3. **Escalations** – high-risk cases ping attending physicians and log post-hoc outcomes.
+
+## Measuring Success
+
+- Follow-up backlog shrank from 14 days to 3.
+- Drift alerts surface in 48 hours instead of 3 weeks.
+- Clinicians spend 1.2 hours/week managing escalations instead of 5.
+
+Agentic systems win trust when they feel like emotionally intelligent teammates, not black boxes.

@@ -38,11 +38,11 @@ export default function Footer() {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-accent bg-[color:var(--surface-chip)] transition-transform duration-200 hover:-translate-y-1 hover:border-accent"
-              aria-label={link.label}
+              className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-accent bg-[color:var(--surface-chip)] transition-transform duration-200 hover:-translate-y-1 hover:border-accent focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+              aria-label={`${link.label} - ${link.href.startsWith('mailto:') ? 'send email' : 'opens in new window'}`}
             >
               <span className="absolute inset-0 rounded-full blur-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100" style={{ background: link.glow }} />
-              <span className="relative text-lg">{link.icon}</span>
+              <span className="relative text-lg" aria-hidden="true">{link.icon}</span>
             </Link>
           ))}
         </div>
