@@ -2,10 +2,10 @@ import type { Profile } from "@/lib/content-types";
 
 export const profile: Profile = {
   name: "Amulya Veldandi",
-  headline: "Physician-Turned-AI Healthcare Engineer",
+  headline: "Data Scientist · Healthcare AI Engineer",
   subheadline:
-    "Translating messy clinical workflows into reproducible neural products with measurable bedside impact.",
-  location: "Indianapolis · Cleveland · Remote-friendly",
+    "4+ years developing production AI/ML systems for medical imaging and clinical analytics. Translating clinical needs into deployable solutions with measurable impact.",
+  location: "Cleveland, OH · Indianapolis, IN",
   resumeUrl: "/resume.pdf",
   social: [
     { label: "Email", href: "mailto:veldandiamulya@gmail.com" },
@@ -15,24 +15,24 @@ export const profile: Profile = {
   ],
   highlights: [
     {
-      title: "50%+ Diagnostic Lift",
-      description: "Clinical AI pipelines boost SQ-MRI agreement and neuro segmentation accuracy.",
+      title: "80% Efficiency Gain",
+      description: "Automated CT analysis cutting manual profiling time across 1,200+ imaging studies.",
       icon: "📈",
     },
     {
-      title: "Agentic Workflow Architect",
-      description: "Designing governance-first agents that keep clinicians in control.",
-      icon: "🛡️",
+      title: "0.75 Dice Coefficient",
+      description: "Multimodal brain MRI segmentation with Docker-based deep learning pipelines.",
+      icon: "🧠",
     },
     {
-      title: "Trusted by Health Systems",
-      description: "Deployments across Cleveland Clinic, IU Health, and government hospitals.",
+      title: "Trusted by Leading Institutions",
+      description: "Deployments at Cleveland Clinic, IU School of Medicine, and multi-site hospital systems.",
       icon: "🏥",
     },
   ],
   descriptors: [
-    "Deep Learning Specialist",
-    "Clinical Innovator",
-    "Healthcare AI Researcher",
+    "Medical Imaging AI Specialist",
+    "Deep Learning Engineer",
+    "Clinical Data Scientist",
   ],
 };

@@ -114,11 +114,12 @@ export type Profile = {
 
 export type SkillCategory =
   | "Programming & Tools"
-  | "ML & AI"
+  | "ML & Deep Learning"
+  | "Cloud & DevOps"
+  | "Medical Imaging"
+  | "Data Science"
   | "Clinical Systems"
-  | "Analytics & Viz"
-  | "Leadership"
-  | "Research Methods";
+  | "Leadership";
 
 export type Skill = {
   name: string;

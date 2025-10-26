@@ -23,13 +23,13 @@ export function ExperienceTimeline() {
     <AnimatedSection
       id="experience"
       data-nav-section
-      className="space-y-10 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:p-10"
+      className="space-y-10 lg:space-y-12 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:p-10 lg:p-12"
     >
       <header className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">Experience</p>
-        <h1 className="text-3xl font-semibold text-[var(--foreground)]">Interactive career timeline</h1>
-        <p className="max-w-2xl text-sm text-[var(--muted)] leading-relaxed">
-          Click on each milestone to see detailed achievements, impact metrics, and the clinical or operational context guiding the work.
+        <p className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">Professional Journey</p>
+        <h1 className="text-fluid-3xl font-semibold text-[var(--foreground)]">Teams that trusted my clinical + data lens</h1>
+        <p className="max-w-prose text-fluid-sm text-[var(--muted)]">
+          Click on each milestone to see detailed achievements, impact metrics, and the clinical or operational context guiding the work. Every engagement blends bedside empathy with reproducible engineering.
         </p>
       </header>
       <div className="relative">
@@ -52,14 +52,14 @@ export function ExperienceTimeline() {
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-3">
                       <Badge variant="neutral">{item.period}</Badge>
-                      <span className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">{item.location}</span>
+                      <span className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">{item.location}</span>
                     </div>
                     <div>
-                      <p className="text-sm uppercase tracking-[0.35em] text-[var(--muted)]">{item.category}</p>
-                      <h2 className="mt-2 text-xl font-semibold text-[var(--foreground)]">{item.title}</h2>
-                      <p className="text-sm text-[var(--muted)]">{item.organisation}</p>
+                      <p className="text-fluid-sm uppercase tracking-[0.35em] text-[var(--muted)]">{item.category}</p>
+                      <h2 className="mt-2 text-fluid-xl font-semibold text-[var(--foreground)]">{item.title}</h2>
+                      <p className="text-fluid-sm text-[var(--muted)]">{item.organisation}</p>
                     </div>
-                    <p className="text-sm leading-relaxed text-[var(--muted)]">{item.headline}</p>
+                    <p className="text-fluid-sm text-[var(--muted)]">{item.headline}</p>
                     <div className="flex flex-wrap gap-2">
                       {item.achievements.map((achievement) => (
                         <Badge key={achievement.label} variant="outline">

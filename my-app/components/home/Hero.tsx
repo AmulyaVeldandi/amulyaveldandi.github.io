@@ -70,10 +70,10 @@ export function Hero() {
     <section
       id="hero"
       data-nav-section
-      className="relative flex min-h-[88vh] flex-col justify-center gap-10 pb-20 pt-28"
+      className="relative flex min-h-[90vh] flex-col justify-center gap-12 pb-24 pt-32 lg:gap-16 lg:pb-32"
     >
       <motion.div
-        className="max-w-3xl space-y-6"
+        className="max-w-prose space-y-8 lg:space-y-10"
         initial="initial"
         animate="animate"
         variants={{
@@ -86,25 +86,25 @@ export function Hero() {
         </motion.div>
         <motion.h1
           variants={staggerChildren}
-          className="text-4xl font-semibold leading-tight text-[var(--foreground)] sm:text-5xl md:text-6xl"
+          className="text-fluid-4xl font-semibold text-[var(--foreground)] sm:text-fluid-5xl lg:text-fluid-6xl"
         >
           {headline}
         </motion.h1>
         <motion.p
           variants={staggerChildren}
-          className="text-lg text-[var(--muted)] sm:text-xl md:text-2xl"
+          className="text-fluid-lg text-[var(--muted)] sm:text-fluid-xl"
         >
           {subheadline}
         </motion.p>
         <motion.div
           variants={staggerChildren}
-          className="flex items-center gap-3 text-sm font-mono uppercase tracking-[0.35em] text-[var(--accent)]"
+          className="flex items-center gap-3 text-fluid-sm font-mono uppercase tracking-[0.35em] text-[var(--accent)]"
           aria-live="polite"
         >
           <span>{text}</span>
           <span className={blink ? "opacity-100" : "opacity-20"}>|</span>
         </motion.div>
-        <motion.div variants={staggerChildren} className="flex flex-wrap gap-4">
+        <motion.div variants={staggerChildren} className="flex flex-wrap gap-4 pt-2">
           <Button href="/work" variant="primary" size="lg">
             View My Work
           </Button>

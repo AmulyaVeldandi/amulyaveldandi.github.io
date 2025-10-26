@@ -12,6 +12,22 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      spacing: {
+        'section-mobile': 'var(--section-gap-mobile)',
+        'section-desktop': 'var(--section-gap-desktop)',
+      },
+      maxWidth: {
+        'prose-min': 'var(--container-prose-min)',
+        'prose': 'var(--container-prose-max)',
+        'prose-wide': 'var(--container-wide)',
+        'narrow': 'var(--container-narrow)',
+      },
+      minWidth: {
+        'tap': 'var(--tap-target-min)',
+      },
+      minHeight: {
+        'tap': 'var(--tap-target-min)',
+      },
     },
   },
   plugins: [],

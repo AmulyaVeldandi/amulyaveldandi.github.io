@@ -49,32 +49,32 @@ export default function AboutPage() {
 
       <ValuesGrid values={storyContent.values} />
 
-      <AnimatedSection className="mt-16 space-y-6 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-8 backdrop-blur lg:p-12">
+      <AnimatedSection className="section-spacing space-y-6 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:p-10 lg:space-y-8 lg:p-12">
         <header className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">Career Journey</p>
-            <h2 className="text-2xl font-semibold text-[var(--foreground)]">Snapshots from the timeline</h2>
-            <p className="mt-2 max-w-2xl text-sm text-[var(--muted)]">
-              Every role blends bedside empathy with reproducible engineering. Dive deeper into the interactive timeline to explore metrics, deliverables, and team impact.
+            <p className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">Career Journey</p>
+            <h2 className="text-fluid-2xl font-semibold text-[var(--foreground)]">Snapshots from recent roles</h2>
+            <p className="mt-2 max-w-prose text-fluid-sm text-[var(--muted)]">
+              Every role blends bedside empathy with reproducible engineering. Visit the Work page for the full interactive timeline with detailed metrics and deliverables.
             </p>
           </div>
           <Link
-            href="/about/timeline"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--accent)] transition hover:text-[var(--accent-foreground)]"
+            href="/work"
+            className="inline-flex items-center gap-2 text-fluid-xs font-semibold uppercase tracking-[0.35em] text-[var(--accent)] transition hover:text-[var(--accent-foreground)]"
           >
-            View full timeline →
+            View full experience →
           </Link>
         </header>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3 md:gap-6">
           {timelinePreview.map((entry) => (
             <article
               key={entry.id}
               className="rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 p-6 shadow-card"
             >
-              <p className="text-sm uppercase tracking-[0.35em] text-[var(--muted)]">{entry.period}</p>
-              <h3 className="mt-2 text-lg font-semibold text-[var(--foreground)]">{entry.title}</h3>
-              <p className="text-sm text-[var(--muted)]">{entry.organisation}</p>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">{entry.headline}</p>
+              <p className="text-fluid-sm uppercase tracking-[0.35em] text-[var(--muted)]">{entry.period}</p>
+              <h3 className="mt-2 text-fluid-lg font-semibold text-[var(--foreground)]">{entry.title}</h3>
+              <p className="text-fluid-sm text-[var(--muted)]">{entry.organisation}</p>
+              <p className="mt-3 text-fluid-sm text-[var(--muted)]">{entry.headline}</p>
               <ul className="mt-3 space-y-2 text-xs text-[var(--muted)]">
                 {entry.achievements.slice(0, 2).map((metric) => (
                   <li key={metric.label} className="flex items-center justify-between">

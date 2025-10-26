@@ -106,12 +106,56 @@ export const projects: Project[] = [
     published: "2025-01-05",
   },
   {
-    slug: "cxr-labeling-benchmark",
-    title: "CXR Labeling Benchmark",
+    slug: "imputeagent-llm-imputation",
+    title: "ImputeAgent - LLM-based Data Imputation",
     summary:
-      "Comparative study of CheXbert vs. CheXGPT across 220k+ chest X-ray reports with adjudication loops.",
+      "Agentic AI system combining statistical models with LLM reasoning for intelligent missing data imputation.",
     description:
-      "Unified ontologies, fine-tuning sweeps, and clinician QA revealed nuanced trade-offs across labeling models.",
+      "Deployed scalable pipeline on AWS SageMaker handling MCAR, MAR, and MNAR scenarios with critic-driven validation, improving downstream model AUC by ~10%.",
+    tags: [
+      tag("Agentic AI", "AI"),
+      tag("MLOps", "ML Ops"),
+      tag("Cloud", "Product"),
+    ],
+    coverImage: "/case-studies/analytics-hero.svg",
+    coverAlt: "ImputeAgent system architecture",
+    techStack: ["OpenAI", "AWS Bedrock", "AWS SageMaker", "Python", "Docker"],
+    metrics: metrics([
+      { label: "Model AUC", value: "+10%", variant: "increase" },
+      { label: "Imputation Scenarios", value: "MCAR, MAR, MNAR", variant: "increase" },
+    ]),
+    github: "https://github.com/amulyaveldandi",
+    published: "2025-08-01",
+  },
+  {
+    slug: "radiology-report-summarization",
+    title: "Radiology Report Summarization with LLMs",
+    summary:
+      "Automated RAG framework reducing manual radiology report summarization time by 60%.",
+    description:
+      "Integrated 10,000+ radiology reports with LLMs using VS Code & LM Studio, building real-time Gradio interface that improved workflow efficiency by 45%.",
+    tags: [
+      tag("NLP", "AI"),
+      tag("RAG", "AI"),
+      tag("Clinical Operations", "Clinical"),
+    ],
+    coverImage: "/case-studies/nlp-hero.svg",
+    coverAlt: "RAG radiology summarization system",
+    techStack: ["LLMs", "RAG", "Gradio", "Python", "LM Studio"],
+    metrics: metrics([
+      { label: "Manual Time", value: "↓60%", variant: "decrease" },
+      { label: "Workflow Efficiency", value: "+45%", variant: "increase" },
+    ]),
+    github: "https://github.com/amulyaveldandi",
+    published: "2024-07-01",
+  },
+  {
+    slug: "cxr-labeling-benchmark",
+    title: "CXR Labeling Benchmark: CheXbert vs CheXGPT",
+    summary:
+      "Comparative analysis of NLP models on 220,000+ chest X-ray reports from MIMIC-CXR and IU-CXR datasets.",
+    description:
+      "Conducted systematic evaluation of CheXbert and CheXGPT labeling models, optimizing accuracy by 12% through hyperparameter fine-tuning and adjudication loops.",
     tags: [
       tag("NLP", "Research"),
       tag("Clinical AI", "AI"),
@@ -119,57 +163,57 @@ export const projects: Project[] = [
     ],
     coverImage: "/case-studies/nlp-hero.svg",
     coverAlt: "Chest X-ray labeling benchmark illustration",
-    techStack: ["PyTorch", "Transformers", "Azure", "Weights & Biases"],
+    techStack: ["PyTorch", "Transformers", "MIMIC-CXR", "IU-CXR"],
     metrics: metrics([
       { label: "Label Accuracy", value: "+12%", variant: "increase" },
-      { label: "Reports Analysed", value: "220k+", variant: "increase" },
+      { label: "Reports Analyzed", value: "220,000+", variant: "increase" },
     ]),
     github: "https://github.com/amulyaveldandi",
-    published: "2022-08-19",
+    published: "2024-04-01",
   },
   {
     slug: "icu-mortality-risk-models",
-    title: "ICU Mortality Risk Stratification",
+    title: "ICU Mortality Risk Stratification in Heart Failure Patients",
     summary:
-      "Biostatistics pipelines quantifying mortality drivers for 12,500 ICU heart failure patients.",
+      "Statistical evaluation of mortality risk factors in 12,500 ICU-admitted heart failure patients.",
     description:
-      "Logistic, survival, and explainable models underpin dashboards that inform multidisciplinary rounds.",
+      "Analyzed mortality risk factors using R Studio, identifying statistically significant subgroups (p < 0.05) and visualizing insights via Power BI to improve risk stratification for multidisciplinary rounds.",
     tags: [
       tag("Biostatistics", "Analytics"),
       tag("Clinical", "Clinical"),
-      tag("Explainability", "Research"),
+      tag("Risk Modeling", "Research"),
     ],
     coverImage: "/case-studies/analytics-detail.svg",
     coverAlt: "ICU analytics detail illustration",
-    techStack: ["R", "Python", "Power BI", "SQL Server"],
+    techStack: ["R", "Python", "Power BI", "Statistical Modeling"],
     metrics: metrics([
-      { label: "Significant Predictors", value: "8", variant: "increase" },
-      { label: "Review Time", value: "↓30%", variant: "decrease" },
+      { label: "Patients Analyzed", value: "12,500", variant: "increase" },
+      { label: "Statistical Significance", value: "p < 0.05", variant: "increase" },
     ]),
     github: "https://github.com/amulyaveldandi",
-    published: "2021-12-10",
+    published: "2023-12-01",
   },
   {
     slug: "dsess-drug-safety-analytics",
-    title: "Drug Safety Severity Analytics",
+    title: "Drug Side Effect Severity Score (D-SESS)",
     summary:
-      "Pharmacovigilance tooling that scores side-effect severity and clusters 3,500 drugs by risk.",
+      "Novel severity scoring framework quantifying drug risk levels across 3,500 drug profiles.",
     description:
-      "The DSESS scoring framework combines severity, frequency, and onset features with interactive dashboards for formulary review.",
+      "Developed D-SESS scoring methodology combining severity, frequency, and onset features. Applied unsupervised clustering to categorize medications and built prediction model achieving 0.98 accuracy.",
     tags: [
       tag("Pharmacovigilance", "Clinical"),
       tag("Clustering", "Analytics"),
-      tag("Product", "Product"),
+      tag("Machine Learning", "AI"),
     ],
     coverImage: "/case-studies/analytics-hero.svg",
     coverAlt: "Drug analytics hero illustration",
-    techStack: ["Python", "scikit-learn", "Plotly", "Power BI"],
+    techStack: ["Python", "scikit-learn", "Clustering", "Predictive Modeling"],
     metrics: metrics([
-      { label: "Coverage", value: "3,500 drugs", variant: "increase" },
-      { label: "Severity Prediction", value: "0.98 AUC", variant: "increase" },
+      { label: "Drug Profiles", value: "3,500", variant: "increase" },
+      { label: "Prediction Accuracy", value: "0.98", variant: "increase" },
     ]),
     github: "https://github.com/amulyaveldandi",
-    published: "2021-05-02",
+    published: "2023-04-01",
   },
 ];
 

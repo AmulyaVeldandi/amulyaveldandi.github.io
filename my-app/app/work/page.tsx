@@ -1,4 +1,3 @@
-import { ExperienceGrid } from "@/components/work/ExperienceGrid";
 import { ImpactMetrics } from "@/components/work/ImpactMetrics";
 import { ExperienceTimeline } from "@/components/work/ExperienceTimeline";
 import { CaseStudyShowcase } from "@/components/work/CaseStudyCard";
@@ -14,9 +13,8 @@ export default function WorkPage() {
       <div className="sr-only">
         <h1>Work Experience and Case Studies</h1>
       </div>
-      <ExperienceGrid />
-      <ImpactMetrics />
       <ExperienceTimeline />
+      <ImpactMetrics />
       <CaseStudyShowcase />
     </div>
   );

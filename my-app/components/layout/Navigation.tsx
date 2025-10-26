@@ -180,7 +180,7 @@ export default function Navigation({ links }: NavigationProps) {
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border-muted)] text-[var(--muted)] transition-colors hover:text-[var(--foreground)] lg:hidden"
+            className="flex min-h-tap min-w-tap items-center justify-center rounded-full border border-[var(--border-muted)] text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 lg:hidden"
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
           >

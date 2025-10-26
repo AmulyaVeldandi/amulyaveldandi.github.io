@@ -29,13 +29,13 @@ export function SkillsGrid() {
     <AnimatedSection
       id="skills"
       data-nav-section
-      className="mt-20 space-y-10 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-8 backdrop-blur lg:p-12"
+      className="section-spacing space-y-10 lg:space-y-12 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:p-10 lg:p-12"
     >
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">Skills Matrix</p>
-          <h2 className="mt-2 text-2xl font-semibold text-[var(--foreground)]">Clinical + technical fluency</h2>
-          <p className="mt-3 max-w-2xl text-sm text-[var(--muted)] leading-relaxed">
+          <p className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">Skills Matrix</p>
+          <h2 className="mt-2 text-fluid-2xl font-semibold text-[var(--foreground)]">Clinical + technical fluency</h2>
+          <p className="mt-3 max-w-prose text-fluid-sm text-[var(--muted)]">
             Filters toggle multidisciplinary toolkits—hover to see the projects or deployments that sharpened each capability.
           </p>
         </div>
@@ -44,7 +44,7 @@ export function SkillsGrid() {
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search skills"
-          className="w-full rounded-2xl border border-[var(--border-muted)] bg-[var(--surface)]/90 px-4 py-3 text-sm text-[var(--foreground)] shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-accent)] lg:w-72"
+          className="w-full rounded-2xl border border-[var(--border-muted)] bg-[var(--surface)]/90 px-4 py-3 text-fluid-sm text-[var(--foreground)] shadow-card min-h-tap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border-accent)] lg:w-72"
         />
       </div>
       <div className="flex flex-wrap gap-2">
@@ -56,7 +56,7 @@ export function SkillsGrid() {
               type="button"
               onClick={() => setActiveCategory(category)}
               className={clsx(
-                "rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.32em] transition",
+                "rounded-full border px-5 py-2.5 text-fluid-xs font-semibold uppercase tracking-[0.32em] transition min-h-[2.5rem]",
                 isActive
                   ? "border-[var(--border-accent)] bg-[var(--surface-elevated)] text-[var(--foreground)]"
                   : "border-[var(--border-muted)] bg-transparent text-[var(--muted)] hover:text-[var(--foreground)]",
@@ -68,9 +68,9 @@ export function SkillsGrid() {
         })}
       </div>
       <div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 p-6 shadow-card">
-        <p className="text-sm text-[var(--muted)] leading-relaxed">{currentCategory.summary}</p>
+        <p className="text-fluid-sm text-[var(--muted)]">{currentCategory.summary}</p>
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2 md:gap-6">
         {filteredSkills.map((skill) => {
           const related = (skill.relatedProjects ?? []).map((slug) => projectLookup.get(slug) ?? slug);
           return (
@@ -82,12 +82,12 @@ export function SkillsGrid() {
               className="group relative overflow-hidden rounded-3xl border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 shadow-card"
             >
               <div className="flex items-center justify-between gap-4">
-                <h3 className="text-lg font-semibold text-[var(--foreground)]">{skill.name}</h3>
-                <span className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">
+                <h3 className="text-fluid-lg font-semibold text-[var(--foreground)]">{skill.name}</h3>
+                <span className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">
                   {skill.years} yrs
                 </span>
               </div>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
+              <p className="mt-3 text-fluid-sm text-[var(--muted)]">
                 {skill.description ?? "Expertise refined in clinical deployments and research labs."}
               </p>
               <div className="mt-4 h-2 rounded-full bg-[var(--surface-muted)]">

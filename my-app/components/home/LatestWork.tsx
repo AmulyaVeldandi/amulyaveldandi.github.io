@@ -16,13 +16,13 @@ export function LatestWork() {
     <AnimatedSection
       id="latest"
       data-nav-section
-      className="mt-24 grid gap-8 lg:grid-cols-[2.1fr,1fr]"
+      className="section-spacing grid gap-8 lg:grid-cols-[2.1fr,1fr] lg:gap-12"
     >
-      <div className="space-y-6">
+      <div className="space-y-6 lg:space-y-8">
         <header className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">Latest Work</p>
-            <h2 className="mt-2 text-2xl font-semibold text-[var(--foreground)]">
+            <p className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">Latest Work</p>
+            <h2 className="mt-2 text-fluid-2xl font-semibold text-[var(--foreground)]">
               Case studies with measurable clinical impact
             </h2>
           </div>
@@ -30,10 +30,10 @@ export function LatestWork() {
             All Projects
           </Button>
         </header>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
           {featuredProjects.map((project) => (
-            <Card key={project.slug} className="p-5 sm:col-span-1">
-              <div className="flex items-center justify-between gap-2 text-xs uppercase tracking-[0.35em] text-[var(--muted)]">
+            <Card key={project.slug} className="p-5 sm:p-6 sm:col-span-1">
+              <div className="flex items-center justify-between gap-2 text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">
                 <span>{new Date(project.published).getFullYear()}</span>
                 {project.caseStudySlug ? (
                   <Badge variant="outline" className="text-[0.6rem]">
@@ -41,8 +41,8 @@ export function LatestWork() {
                   </Badge>
                 ) : null}
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-[var(--foreground)]">{project.title}</h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">{project.summary}</p>
+              <h3 className="mt-4 text-fluid-lg font-semibold text-[var(--foreground)]">{project.title}</h3>
+              <p className="mt-3 text-fluid-sm text-[var(--muted)]">{project.summary}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {project.tags.slice(0, 3).map((tag) => (
                   <Badge key={tag.label} variant="neutral">
@@ -63,13 +63,13 @@ export function LatestWork() {
           ))}
         </div>
       </div>
-      <Card className="flex flex-col justify-between p-6">
+      <Card className="flex flex-col justify-between p-6 sm:p-7 lg:p-8">
         <div>
-          <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">Latest Journal</p>
-          <h3 className="mt-3 text-xl font-semibold text-[var(--foreground)]">
+          <p className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">Latest Journal</p>
+          <h3 className="mt-3 text-fluid-xl font-semibold text-[var(--foreground)]">
             {latestBlog.title}
           </h3>
-          <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">{latestBlog.description}</p>
+          <p className="mt-3 text-fluid-sm text-[var(--muted)]">{latestBlog.description}</p>
         </div>
         <div className="mt-6 space-y-3">
           <Link
