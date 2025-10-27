@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -23,7 +22,6 @@ const HIDDEN_SCROLL_THRESHOLD = 120;
 export default function Navigation({ links }: NavigationProps) {
   const pathname = usePathname() ?? "/";
   const [activeSection, setActiveSection] = useState(pathname);
-  const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScroll = useRef(0);
@@ -77,7 +75,6 @@ export default function Navigation({ links }: NavigationProps) {
   useEffect(() => {
     const handleScroll = () => {
       const current = window.scrollY;
-      setScrolled(current > 8);
 
       if (menuOpen) {
         setHidden(false);
@@ -131,72 +128,80 @@ export default function Navigation({ links }: NavigationProps) {
     <>
       <header
         className={clsx(
-          "fixed inset-x-0 top-0 z-30 transition-all duration-300",
-          scrolled ? "pt-3 shadow-sm" : "pt-4",
+          "fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 transition-all duration-300",
           hidden ? "-translate-y-full" : "translate-y-0",
         )}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
-          <div className="relative flex w-full items-center justify-between rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/90 px-4 py-2.5 shadow-lg backdrop-blur">
-          <Link
-            href="/"
-            className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--muted)] transition hover:text-[var(--foreground)]"
-          >
-            Amulya Veldandi
-          </Link>
-          <nav className="hidden items-center gap-3 lg:flex">
-            <ul className="flex items-center gap-2 rounded-full border border-[var(--border-muted)] bg-[var(--surface)] p-1">
-              {links.map((link) => {
-                const isActive =
-                  activeHref === link.href ||
-                  (isHome && activeHref === `#${link.href.split("#")[1]}`);
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className={clsx(
-                        "relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--muted)] transition-colors",
-                        isActive
-                          ? "text-[var(--foreground)]"
-                          : "hover:text-[var(--foreground)]",
-                      )}
-                    >
-                      {link.label}
-                      <AnimatePresence>
-                        {isActive ? (
-                          <motion.span
-                            layoutId="nav-pill"
-                            className="absolute inset-0 -z-10 rounded-full bg-[var(--surface-elevated)] shadow-nav-pill"
-                            transition={{ type: "spring", stiffness: 280, damping: 26 }}
-                          />
-                        ) : null}
-                      </AnimatePresence>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <ThemeToggle />
-          </nav>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            className="flex min-h-tap min-w-tap items-center justify-center rounded-full border border-[var(--border-muted)] text-[var(--muted)] transition-colors hover:text-[var(--foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 lg:hidden"
-            aria-label="Toggle navigation menu"
-            aria-expanded={menuOpen}
-          >
-            <motion.span
-              initial={false}
-              animate={{ rotate: menuOpen ? 45 : 0 }}
-              className="relative block h-4 w-4"
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative flex items-center justify-between h-16">
+            {/* Logo */}
+            <Link
+              href="/"
+              className="text-lg font-bold tracking-tight text-gray-900 hover:text-blue-600 transition-colors"
             >
-              <span className="absolute left-0 top-1/2 block h-[2px] w-full -translate-y-1/2 bg-current transition-all" />
-              <span className="absolute left-0 top-0 block h-[2px] w-full bg-current transition-all" />
-              <span className="absolute left-0 bottom-0 block h-[2px] w-full bg-current transition-all" />
-            </motion.span>
-          </button>
+              AMULYA VELDANDI
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              <ul className="flex items-center gap-8">
+                {links.map((link) => {
+                  const isActive =
+                    activeHref === link.href ||
+                    (isHome && activeHref === `#${link.href.split("#")[1]}`);
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className={clsx(
+                          "text-sm font-medium uppercase transition-colors",
+                          isActive
+                            ? "text-blue-600"
+                            : "text-gray-700 hover:text-blue-600",
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors"
+              aria-label="Toggle navigation menu"
+              aria-expanded={menuOpen}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {menuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
-        </div>
+        </nav>
       </header>
       <MobileMenu
         open={menuOpen}

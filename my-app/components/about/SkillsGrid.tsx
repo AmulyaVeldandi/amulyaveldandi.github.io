@@ -112,7 +112,7 @@ export function SkillsGrid() {
         })}
         {filteredSkills.length === 0 ? (
           <p className="rounded-3xl border border-dashed border-[var(--border-muted)] bg-[var(--surface)]/90 p-4 text-sm text-[var(--muted)] md:col-span-2">
-            No skills match "{search}". Try another keyword or select a different category.
+            No skills match &ldquo;{search}&rdquo;. Try another keyword or select a different category.
           </p>
         ) : null}
       </div>

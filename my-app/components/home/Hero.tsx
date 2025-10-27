@@ -55,7 +55,7 @@ function useTypewriter(words: string[], typeSpeed = 70, pauseDuration = 1400) {
 export function Hero() {
   const { descriptors, headline, subheadline, location, resumeUrl } = profile;
 
-  const { text, blink } = useTypewriter(descriptors, 64, 1600);
+  const { text, blink } = useTypewriter(descriptors, 50, 2400);
 
   const staggerChildren = useMemo(
     () => ({
@@ -81,30 +81,30 @@ export function Hero() {
           animate: { transition: { staggerChildren: 0.12 } },
         }}
       >
-        <motion.div variants={staggerChildren}>
+        <motion.div variants={staggerChildren} className="mb-4">
           <Badge variant="outline">{location}</Badge>
         </motion.div>
         <motion.h1
           variants={staggerChildren}
-          className="text-fluid-4xl font-semibold text-[var(--foreground)] sm:text-fluid-5xl lg:text-fluid-6xl"
+          className="text-fluid-4xl font-semibold text-[var(--foreground)] sm:text-fluid-5xl lg:text-fluid-6xl mb-6"
         >
           {headline}
         </motion.h1>
         <motion.p
           variants={staggerChildren}
-          className="text-fluid-lg text-[var(--muted)] sm:text-fluid-xl"
+          className="text-fluid-lg text-[var(--muted)] sm:text-fluid-xl mb-4"
         >
           {subheadline}
         </motion.p>
         <motion.div
           variants={staggerChildren}
-          className="flex items-center gap-3 text-fluid-sm font-mono uppercase tracking-[0.35em] text-[var(--accent)]"
+          className="flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-blue-600 mb-8 min-h-[32px]"
           aria-live="polite"
         >
           <span>{text}</span>
           <span className={blink ? "opacity-100" : "opacity-20"}>|</span>
         </motion.div>
-        <motion.div variants={staggerChildren} className="flex flex-wrap gap-4 pt-2">
+        <motion.div variants={staggerChildren} className="flex flex-wrap gap-4">
           <Button href="/work" variant="primary" size="lg">
             View My Work
           </Button>
@@ -114,7 +114,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
       <motion.div
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.35em] text-[var(--muted)] sm:flex"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-wider text-gray-500 sm:flex mt-12"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: [0, 0.9, 0.4, 0.9], y: [12, 0, 8, 0] }}
         transition={{
@@ -125,7 +125,7 @@ export function Hero() {
         }}
       >
         <span>Scroll</span>
-        <span className="block h-10 w-[1px] bg-gradient-to-b from-transparent via-[var(--muted)] to-transparent" />
+        <span className="block h-10 w-[1px] bg-gradient-to-b from-transparent via-gray-400 to-transparent" />
       </motion.div>
     </section>
   );
