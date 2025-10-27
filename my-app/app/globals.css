@@ -3,59 +3,59 @@
 @tailwind utilities;
 
 :root {
-  --background: #f4f7fb;
-  --background-accent: #e6f1ff;
+  /* Modern refined palette with better contrast */
+  --background: #f8fafc;
+  --background-accent: #e0f2fe;
   --background-strong: #ffffff;
-  --foreground: #1b1e2a;
-  --foreground-muted: #4b4f63;
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-muted: rgba(236, 244, 255, 0.86);
-  --border: rgba(92, 126, 180, 0.22);
-  --shadow: rgba(25, 62, 120, 0.16);
-  --nav-background: rgba(241, 247, 255, 0.9);
-  --nav-border: rgba(104, 142, 204, 0.24);
-  --link: #234d8f;
-  --link-hover: #17386a;
-  --heading-start: #204c8c;
-  --heading-end: #3d5abf;
-  --project-placeholder: rgba(79, 135, 206, 0.14);
-  --accent: #346cf1;
-  --accent-light: #5bbad6;
-  --accent-muted: rgba(74, 128, 214, 0.22);
-  --accent-soft: rgba(104, 142, 204, 0.18);
-  --accent-border: rgba(74, 128, 214, 0.32);
+  --foreground: #0f172a;
+  --foreground-muted: #475569;
+  --surface: rgba(255, 255, 255, 0.95);
+  --surface-muted: rgba(241, 245, 249, 0.9);
+  --border: rgba(100, 116, 139, 0.18);
+  --shadow: rgba(15, 23, 42, 0.08);
+  --nav-background: rgba(248, 250, 252, 0.95);
+  --nav-border: rgba(100, 116, 139, 0.2);
+  --link: #0369a1;
+  --link-hover: #075985;
+  --heading-start: #0c4a6e;
+  --heading-end: #3b82f6;
+  --project-placeholder: rgba(59, 130, 246, 0.12);
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-muted: rgba(59, 130, 246, 0.15);
+  --accent-soft: rgba(59, 130, 246, 0.1);
+  --accent-border: rgba(59, 130, 246, 0.3);
   --muted: var(--foreground-muted);
   --border-muted: var(--border);
   --border-accent: var(--accent-border);
-  --surface-elevated: rgba(255, 255, 255, 0.96);
-  --accent-foreground: #0f1320;
-  --accent-shadow: rgba(39, 82, 160, 0.22);
-  --accent-shadow-strong: rgba(27, 70, 150, 0.3);
-  --accent-glow: rgba(112, 186, 247, 0.35);
-  --pattern-color: rgba(52, 108, 241, 0.07);
-  --surface-chip: rgba(247, 251, 255, 0.85);
-  --surface-chip-strong: rgba(233, 244, 255, 0.9);
-  --hero-glow-inner: rgba(255, 255, 255, 0.78);
-  --hero-glow-outer: rgba(112, 192, 255, 0.32);
-  --hero-blob-left: rgba(67, 179, 246, 0.22);
-  --hero-blob-right: rgba(135, 112, 255, 0.24);
-  --hero-flare: rgba(222, 240, 255, 0.72);
-  --hero-flare-secondary: rgba(188, 220, 255, 0.58);
-  --hero-grid-color: rgba(84, 148, 230, 0.18);
-  --hero-ring-color: rgba(74, 128, 214, 0.18);
-  --hero-ring-highlight: rgba(104, 170, 248, 0.28);
-  --hero-noise-color: rgba(58, 98, 182, 0.1);
+  --surface-elevated: rgba(255, 255, 255, 0.98);
+  --accent-foreground: #ffffff;
+  --accent-shadow: rgba(59, 130, 246, 0.2);
+  --accent-shadow-strong: rgba(59, 130, 246, 0.35);
+  --accent-glow: rgba(96, 165, 250, 0.4);
+  --pattern-color: rgba(148, 163, 184, 0.05);
+  --surface-chip: rgba(241, 245, 249, 0.9);
+  --surface-chip-strong: rgba(226, 232, 240, 0.95);
+  --hero-glow-inner: rgba(255, 255, 255, 0.85);
+  --hero-glow-outer: rgba(96, 165, 250, 0.25);
+  --hero-blob-left: rgba(59, 130, 246, 0.15);
+  --hero-blob-right: rgba(99, 102, 241, 0.18);
+  --hero-flare: rgba(224, 242, 254, 0.8);
+  --hero-flare-secondary: rgba(186, 230, 253, 0.6);
+  --hero-grid-color: rgba(148, 163, 184, 0.12);
+  --hero-ring-color: rgba(100, 116, 139, 0.15);
+  --hero-ring-highlight: rgba(96, 165, 250, 0.25);
+  --hero-noise-color: rgba(71, 85, 105, 0.08);
 }
 
 body {
   color: var(--foreground);
   background-color: var(--background);
   background-image:
-    radial-gradient(160% 140% at 50% -20%, var(--background-strong) 0%, rgba(0, 0, 0, 0) 70%),
-    linear-gradient(130deg, rgba(196, 200, 208, 0.18), rgba(0, 0, 0, 0)),
-    repeating-linear-gradient(135deg, transparent 0 34px, var(--pattern-color) 34px 35px),
-    repeating-linear-gradient(0deg, transparent 0 30px, var(--pattern-color) 30px 31px);
-  background-blend-mode: lighten, normal, overlay, overlay;
+    radial-gradient(circle at 20% 50%, rgba(224, 242, 254, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(196, 181, 253, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(147, 197, 253, 0.12) 0%, transparent 50%);
+  background-attachment: fixed;
   position: relative;
   isolation: isolate;
   font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -2982,6 +2982,79 @@ html {
 @media (min-width: 1024px) {
   .section-spacing {
     margin-top: var(--section-gap-desktop);
+  }
+}
+
+/* ========================================
+   SPACING UTILITIES
+   ======================================== */
+
+/* Consistent Card Padding */
+.card-padding-sm {
+  padding: 1rem; /* 16px - Small cards, metrics */
+}
+
+.card-padding-md {
+  padding: 1.5rem; /* 24px mobile */
+}
+
+@media (min-width: 640px) {
+  .card-padding-md {
+    padding: 2rem; /* 32px tablet+ */
+  }
+}
+
+.card-padding-lg {
+  padding: 1.5rem; /* 24px mobile */
+}
+
+@media (min-width: 640px) {
+  .card-padding-lg {
+    padding: 2.5rem; /* 40px tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-padding-lg {
+    padding: 3rem; /* 48px desktop */
+  }
+}
+
+/* Consistent Grid Gaps */
+.grid-gap-cards {
+  gap: 1.5rem; /* 24px mobile */
+}
+
+@media (min-width: 768px) {
+  .grid-gap-cards {
+    gap: 2rem; /* 32px desktop */
+  }
+}
+
+.grid-gap-tight {
+  gap: 0.5rem; /* 8px - for badges, tags */
+}
+
+@media (min-width: 640px) {
+  .grid-gap-tight {
+    gap: 0.75rem; /* 12px tablet+ */
+  }
+}
+
+/* Section Vertical Spacing */
+.section-vertical-spacing {
+  margin-bottom: 3rem; /* 48px mobile */
+}
+
+@media (min-width: 640px) {
+  .section-vertical-spacing {
+    margin-bottom: 4rem; /* 64px tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-vertical-spacing {
+    margin-bottom: 5rem; /* 80px desktop */
   }
 }
 

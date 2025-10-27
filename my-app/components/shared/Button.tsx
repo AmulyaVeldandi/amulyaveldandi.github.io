@@ -35,9 +35,9 @@ const variantClasses: Record<NonNullable<BaseProps["variant"]>, string> = {
 };
 
 const sizeClasses: Record<NonNullable<BaseProps["size"]>, string> = {
-  sm: "px-4 py-2.5 text-fluid-xs uppercase tracking-[0.32em] min-h-[2.5rem]",
-  md: "px-5 py-3 text-fluid-xs uppercase tracking-[0.32em] min-h-tap",
-  lg: "px-7 py-3.5 text-fluid-sm uppercase tracking-[0.32em] min-h-tap",
+  sm: "px-3 py-1.5 text-fluid-xs uppercase tracking-[0.32em] min-h-[2.5rem]",
+  md: "px-4 py-2 text-fluid-xs uppercase tracking-[0.32em] min-h-tap",
+  lg: "px-5 py-2.5 text-fluid-sm uppercase tracking-[0.32em] min-h-tap",
 };
 
 export function Button(props: ButtonProps) {

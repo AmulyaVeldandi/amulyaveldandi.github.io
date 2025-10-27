@@ -29,7 +29,7 @@ export function SkillsGrid() {
     <AnimatedSection
       id="skills"
       data-nav-section
-      className="section-spacing space-y-10 lg:space-y-12 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:p-10 lg:p-12"
+      className="section-spacing space-y-6 lg:space-y-8 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-4 backdrop-blur sm:p-6 lg:p-8"
     >
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -67,10 +67,10 @@ export function SkillsGrid() {
           );
         })}
       </div>
-      <div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 p-6 shadow-card">
+      <div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 p-4 shadow-card">
         <p className="text-fluid-sm text-[var(--muted)]">{currentCategory.summary}</p>
       </div>
-      <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+      <div className="grid gap-4 md:grid-cols-2 md:gap-5">
         {filteredSkills.map((skill) => {
           const related = (skill.relatedProjects ?? []).map((slug) => projectLookup.get(slug) ?? slug);
           return (
@@ -79,7 +79,7 @@ export function SkillsGrid() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-3xl border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 shadow-card"
+              className="group relative overflow-hidden rounded-3xl border border-[var(--border-muted)] bg-[var(--surface)]/90 p-4 shadow-card"
             >
               <div className="flex items-center justify-between gap-4">
                 <h3 className="text-fluid-lg font-semibold text-[var(--foreground)]">{skill.name}</h3>
@@ -111,8 +111,8 @@ export function SkillsGrid() {
           );
         })}
         {filteredSkills.length === 0 ? (
-          <p className="rounded-3xl border border-dashed border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 text-sm text-[var(--muted)] md:col-span-2">
-            No skills match “{search}”. Try another keyword or select a different category.
+          <p className="rounded-3xl border border-dashed border-[var(--border-muted)] bg-[var(--surface)]/90 p-4 text-sm text-[var(--muted)] md:col-span-2">
+            No skills match "{search}". Try another keyword or select a different category.
           </p>
         ) : null}
       </div>

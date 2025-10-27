@@ -131,20 +131,21 @@ export default function Navigation({ links }: NavigationProps) {
     <>
       <header
         className={clsx(
-          "fixed inset-x-0 top-0 z-30 flex justify-center px-4 transition-all duration-300",
-          scrolled ? "pt-4" : "pt-6",
+          "fixed inset-x-0 top-0 z-30 transition-all duration-300",
+          scrolled ? "pt-3 shadow-sm" : "pt-4",
           hidden ? "-translate-y-full" : "translate-y-0",
         )}
       >
-        <div className="relative flex w-full max-w-5xl items-center justify-between rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/90 px-4 py-3 shadow-lg backdrop-blur">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
+          <div className="relative flex w-full items-center justify-between rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/90 px-4 py-2.5 shadow-lg backdrop-blur">
           <Link
             href="/"
             className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--muted)] transition hover:text-[var(--foreground)]"
           >
             Amulya Veldandi
           </Link>
-          <nav className="hidden items-center gap-2 lg:flex">
-            <ul className="flex items-center gap-1 rounded-full border border-[var(--border-muted)] bg-[var(--surface)] p-1">
+          <nav className="hidden items-center gap-3 lg:flex">
+            <ul className="flex items-center gap-2 rounded-full border border-[var(--border-muted)] bg-[var(--surface)] p-1">
               {links.map((link) => {
                 const isActive =
                   activeHref === link.href ||
@@ -194,6 +195,7 @@ export default function Navigation({ links }: NavigationProps) {
               <span className="absolute left-0 bottom-0 block h-[2px] w-full bg-current transition-all" />
             </motion.span>
           </button>
+          </div>
         </div>
       </header>
       <MobileMenu

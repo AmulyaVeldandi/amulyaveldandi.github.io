@@ -61,7 +61,7 @@ export default function ContactForm() {
             name="name"
             value={state.name}
             onChange={handleChange}
-            className="mt-2 rounded-full border border-accent bg-[color:var(--surface-chip)] px-4 py-2 text-sm text-[color:var(--foreground)] focus:border-accent focus:outline-none"
+            className="mt-2 rounded-full border border-accent bg-[color:var(--surface-chip)] px-4 py-3 text-sm text-[color:var(--foreground)] focus:border-accent focus:outline-none"
             placeholder="Your name"
             required
           />
@@ -73,7 +73,7 @@ export default function ContactForm() {
             name="email"
             value={state.email}
             onChange={handleChange}
-            className="mt-2 rounded-full border border-accent bg-[color:var(--surface-chip)] px-4 py-2 text-sm text-[color:var(--foreground)] focus:border-accent focus:outline-none"
+            className="mt-2 rounded-full border border-accent bg-[color:var(--surface-chip)] px-4 py-3 text-sm text-[color:var(--foreground)] focus:border-accent focus:outline-none"
             placeholder="you@example.com"
             required
           />

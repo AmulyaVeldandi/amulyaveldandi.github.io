@@ -23,7 +23,7 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="section-spacing rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-chip-strong)] px-6 py-10 sm:px-10 sm:py-12 text-[var(--foreground)]">
+    <footer className="section-spacing rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-chip-strong)] px-4 py-8 sm:px-6 sm:py-10 text-[var(--foreground)]">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-2">
           <p className="text-fluid-sm font-semibold text-[var(--foreground)]">Stay Connected</p>
@@ -47,7 +47,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="group flex items-center gap-4">
           <div className="chibi-brain" aria-label="Chibi brain mascot" role="img">
             <span />
@@ -65,7 +65,7 @@ export default function Footer() {
           Crafted with empathy-driven AI design.
         </div>
       </div>
-      <p className="mt-8 text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">
+      <p className="mt-5 text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">
         © {new Date().getFullYear()} Amulya Veldandi · Designed for trustworthy AI in healthcare
       </p>
     </footer>

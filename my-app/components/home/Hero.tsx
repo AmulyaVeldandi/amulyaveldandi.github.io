@@ -70,10 +70,10 @@ export function Hero() {
     <section
       id="hero"
       data-nav-section
-      className="relative flex min-h-[90vh] flex-col justify-center gap-12 pb-24 pt-32 lg:gap-16 lg:pb-32"
+      className="relative flex min-h-[90vh] flex-col justify-center gap-8 pb-12 pt-20 lg:gap-10 lg:pb-20"
     >
       <motion.div
-        className="max-w-prose space-y-8 lg:space-y-10"
+        className="max-w-prose space-y-5 lg:space-y-6"
         initial="initial"
         animate="animate"
         variants={{

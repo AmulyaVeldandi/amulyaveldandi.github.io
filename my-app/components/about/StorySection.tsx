@@ -28,7 +28,7 @@ export function StorySection({ eyebrow, title, body, resumeUrl, ctaHref, impact,
     <AnimatedSection
       id="about"
       data-nav-section
-      className="grid items-center gap-10 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:grid-cols-[1.05fr,1fr] sm:p-10 lg:gap-12 lg:p-12"
+      className="grid items-center gap-6 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-4 backdrop-blur sm:grid-cols-[1.05fr,1fr] sm:p-6 lg:gap-8 lg:p-8"
     >
       <div className="relative order-2 sm:order-1">
         <Image
@@ -44,13 +44,13 @@ export function StorySection({ eyebrow, title, body, resumeUrl, ctaHref, impact,
           Clinician · Data Scientist · Builder
         </div>
       </div>
-      <div className="order-1 space-y-6 sm:order-2 sm:space-y-7">
+      <div className="order-1 space-y-4 sm:order-2 sm:space-y-5">
         <Badge variant="outline" className="text-[0.6rem]">
           {eyebrow}
         </Badge>
         <h1 className="text-fluid-3xl font-semibold text-[var(--foreground)] sm:text-fluid-4xl">{title}</h1>
         <p className="text-fluid-base text-[var(--muted)] max-w-prose-min">{body}</p>
-        <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
+        <div className="grid gap-3 sm:grid-cols-3 md:gap-4">
           {impact.map((item) => (
             <div key={item.metric} className="rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/90 p-4 text-center">
               <p className="text-fluid-lg font-semibold text-[var(--foreground)]">{item.metric}</p>
@@ -73,16 +73,16 @@ export function StorySection({ eyebrow, title, body, resumeUrl, ctaHref, impact,
 
 export function ValuesGrid({ values }: { values: StoryValue[] }) {
   return (
-    <AnimatedSection className="section-spacing space-y-8 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-6 backdrop-blur sm:p-10 lg:p-12">
+    <AnimatedSection className="section-spacing space-y-5 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-4 backdrop-blur sm:p-6 lg:p-8">
       <header className="space-y-2">
         <p className="text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">Principles</p>
         <h2 className="text-fluid-2xl font-semibold text-[var(--foreground)]">Values at the center of every deployment</h2>
       </header>
-      <div className="grid gap-5 md:grid-cols-3 md:gap-6">
+      <div className="grid gap-4 md:grid-cols-3 md:gap-5">
         {values.map((value) => (
           <article
             key={value.label}
-            className="group rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 p-6 transition hover:-translate-y-1 hover:border-[var(--border-accent)]"
+            className="group rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 p-4 transition hover:-translate-y-1 hover:border-[var(--border-accent)]"
           >
             <h3 className="text-fluid-lg font-semibold text-[var(--foreground)]">{value.label}</h3>
             <p className="mt-3 text-fluid-sm text-[var(--muted)]">{value.detail}</p>

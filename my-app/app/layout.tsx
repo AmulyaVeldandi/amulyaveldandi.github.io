@@ -65,13 +65,13 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased transition-colors duration-500">
+      <body className="relative min-h-screen bg-gray-50 text-[var(--foreground)] antialiased transition-colors duration-500">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <ThemeProvider>
           <NeuralBackground />
           <Navigation links={navLinks} />
           <div className="relative z-10 flex min-h-screen flex-col">
-            <main className="flex-1 w-full max-w-prose-wide mx-auto px-5 pb-24 pt-32 sm:px-8 lg:px-12 xl:px-16">{children}</main>
+            <main className="flex-1 w-full max-w-7xl mx-auto px-4 pb-12 pt-20 sm:px-6 lg:px-6">{children}</main>
             <Footer />
           </div>
           <Toaster />
