@@ -1,9 +1,15 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getBlogPost } from '@/data/blog/posts';
+import { getBlogPost, blogPosts } from '@/data/blog/posts';
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {

@@ -2,6 +2,8 @@ import { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
 import { blogPosts } from "@/data/blog/posts";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://amulyaveldandi.com";
 
