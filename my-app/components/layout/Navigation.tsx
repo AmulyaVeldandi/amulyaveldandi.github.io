@@ -128,7 +128,8 @@ export default function Navigation({ links }: NavigationProps) {
     <>
       <header
         className={clsx(
-          "fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 transition-all duration-300",
+          "fixed inset-x-0 top-0 z-50 backdrop-blur-md border-b transition-all duration-300",
+          "bg-[var(--nav-background)] border-[var(--nav-border)]",
           hidden ? "-translate-y-full" : "translate-y-0",
         )}
       >
@@ -137,7 +138,7 @@ export default function Navigation({ links }: NavigationProps) {
             {/* Logo */}
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-gray-900 hover:text-blue-600 transition-colors"
+              className="text-lg font-bold tracking-tight text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
             >
               AMULYA VELDANDI
             </Link>
@@ -156,8 +157,8 @@ export default function Navigation({ links }: NavigationProps) {
                         className={clsx(
                           "text-sm font-medium uppercase transition-colors",
                           isActive
-                            ? "text-blue-600"
-                            : "text-gray-700 hover:text-blue-600",
+                            ? "text-[var(--accent)]"
+                            : "text-[var(--foreground-muted)] hover:text-[var(--accent)]",
                         )}
                       >
                         {link.label}
@@ -173,7 +174,7 @@ export default function Navigation({ links }: NavigationProps) {
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors"
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[var(--foreground-muted)] hover:text-[var(--accent)] hover:bg-[var(--surface-muted)] transition-colors"
               aria-label="Toggle navigation menu"
               aria-expanded={menuOpen}
             >

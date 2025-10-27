@@ -65,7 +65,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="relative min-h-screen bg-gray-50 text-[var(--foreground)] antialiased transition-colors duration-500">
+      <body className="relative min-h-screen text-[var(--foreground)] antialiased transition-colors duration-500">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <ThemeProvider>
           <NeuralBackground />
