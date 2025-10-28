@@ -10,8 +10,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     heroImage: "/case-studies/analytics-hero.svg",
     heroAlt: "CT throughput dashboard with predictive overlays.",
     techStack: ["Python", "Docker", "TotalSegmentator", "LightGBM", "Grafana"],
-    github: "https://github.com/amulyaveldandi",
-    demo: "https://github.com/amulyaveldandi",
+    github: "https://github.com/AmulyaVeldandi",
     overview: {
       problem:
         "Technologists were manually profiling attenuation across 1,200+ CT studies each week, limiting scanner availability and delaying patient care.",
@@ -98,7 +97,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     heroImage: "/case-studies/pancreas-hero.svg",
     heroAlt: "Pancreas MRI case study hero graphic.",
     techStack: ["Docker", "PyTorch", "FastAPI", "Supabase", "Power BI"],
-    github: "https://github.com/amulyaveldandi",
+    github: "https://github.com/AmulyaVeldandi",
     overview: {
       problem:
         "Clinicians lacked reproducible pancreas/spleen measurements, leading to inconsistent SQ-MRI scores and stalled therapeutic escalation.",
@@ -259,6 +258,181 @@ export const caseStudies: Record<string, CaseStudy> = {
       { metric: "Turnaround", value: "↓78%", delta: "decrease" },
       { metric: "Escalation Accuracy", value: "↑30%", delta: "increase" },
       { metric: "Reuse", value: "2 additional service lines", delta: "increase" },
+    ],
+  },
+  "audra-rad": {
+    slug: "audra-rad",
+    title: "AuDRA-Rad: Autonomous Radiology Assistant",
+    category: "Healthcare AI",
+    description:
+      "An autonomous AI system that reads radiology reports, retrieves ACR/Fleischner guidelines, and generates EHR-integrated follow-up orders.",
+    heroImage: "/case-studies/audra-hero.svg",
+    heroAlt: "AuDRA-Rad autonomous radiology workflow.",
+    techStack: ["AWS EKS", "NVIDIA NIM", "FastAPI", "OpenSearch", "Docker", "Kubernetes", "FHIR"],
+    github: "https://github.com/AmulyaVeldandi/AuDRA-Rad",
+    overview: {
+      problem:
+        "Radiology departments struggle with follow-up compliance gaps, leading to missed incidental findings and liability concerns.",
+      role: "Technical Lead & Developer",
+      timeline: "2024",
+    },
+    challenge: {
+      heading: "Follow-up recommendations lost in manual workflows",
+      body:
+        "Radiologists generate thousands of reports with follow-up recommendations, but manual tracking leads to compliance gaps and patient safety risks.",
+      bullets: [
+        "Unstructured reports require manual extraction of clinical findings.",
+        "No automated guideline retrieval system for ACR/Fleischner standards.",
+        "Follow-up orders created manually, causing delays and missed cases.",
+      ],
+    },
+    approach: {
+      heading: "RAG-powered autonomous reasoning with safety guardrails",
+      body:
+        "Built on AWS infrastructure with NVIDIA NIM, the system parses FHIR-compliant reports, retrieves embedded guidelines via semantic search, and generates recommendations with clinical validators.",
+      bullets: [
+        "FHIR-compliant parsing normalizes unstructured reports into structured data.",
+        "RAG pipeline with OpenSearch Serverless for guideline retrieval.",
+        "Nemotron NIM generates evidence-grounded recommendations.",
+        "Custom validators flag high-risk cases before EHR integration.",
+      ],
+      diagram: "/case-studies/audra-detail.svg",
+    },
+    results: [
+      {
+        metric: "Deployment Cost",
+        before: "Manual processing",
+        after: "~$3/hour GPU",
+        insight: "Cost-effective AWS infrastructure on g5.xlarge instances.",
+      },
+      {
+        metric: "Guideline Retrieval",
+        before: "Manual lookup",
+        after: "Automated RAG",
+        insight: "Semantic search retrieves relevant ACR/Fleischner guidelines.",
+      },
+      {
+        metric: "EHR Integration",
+        before: "Manual orders",
+        after: "Automated tasks",
+        insight: "Direct order creation in hospital systems with audit trails.",
+      },
+    ],
+    impact: [
+      "Reduces follow-up compliance gaps through automated tracking.",
+      "Improves patient outcomes with faster, guideline-compliant care.",
+      "Full audit trail via CloudWatch and X-Ray for compliance.",
+    ],
+    deepDive: [
+      {
+        title: "FHIR-Compliant Architecture",
+        content:
+          "The system normalizes unstructured radiology reports using FHIR standards, enabling seamless integration with existing hospital EHR systems and ensuring data interoperability.",
+      },
+      {
+        title: "Safety Guardrails",
+        content:
+          "Custom validators enforce clinical constraints and flag high-risk cases for human review. The system maintains transparency with full audit trails for every recommendation.",
+      },
+      {
+        title: "Scalable Infrastructure",
+        content:
+          "Deployed on AWS EKS with Kubernetes orchestration, the system scales dynamically based on report volume. OpenSearch Serverless provides fast semantic search across embedded medical guidelines.",
+      },
+    ],
+    related: ["agentic-radiology-assistant", "ct-throughput-optimizer"],
+    highlights: [
+      { metric: "Infrastructure Cost", value: "$3/hour", delta: "increase" },
+      { metric: "Guideline Access", value: "Automated", delta: "increase" },
+      { metric: "EHR Integration", value: "Direct", delta: "increase" },
+    ],
+  },
+  "calm-companion": {
+    slug: "calm-companion",
+    title: "CalmCompanion: AI Support for Alzheimer's Care",
+    category: "Healthcare AI",
+    description:
+      "Voice-first AI system providing empathetic support and smart-home automation for Alzheimer's patients and caregivers.",
+    heroImage: "/case-studies/calm-hero.svg",
+    heroAlt: "CalmCompanion AI care assistant.",
+    techStack: ["Python", "AWS Bedrock", "FastAPI", "Streamlit", "DynamoDB", "S3"],
+    github: "https://github.com/AmulyaVeldandi/CalmCompanion",
+    overview: {
+      problem:
+        "80%+ of Alzheimer's patients experience agitation, and 70% of caregivers report burnout from unpredictable episodes.",
+      role: "Developer & Designer",
+      timeline: "2024",
+    },
+    challenge: {
+      heading: "Caregivers face burnout from unpredictable patient episodes",
+      body:
+        "Alzheimer's patients experience frequent agitation episodes, while caregivers lack real-time support and actionable insights to manage these situations.",
+      bullets: [
+        "80%+ of patients experience agitation and anxiety.",
+        "70% of caregivers report burnout from constant monitoring.",
+        "Limited tools for real-time emotional support and risk detection.",
+      ],
+    },
+    approach: {
+      heading: "Voice-first AI with empathetic interaction and smart automation",
+      body:
+        "Progressive web app with push-to-talk interface, AWS Bedrock-powered reasoning, emotion analysis, and optional smart-home integrations for calming environments.",
+      bullets: [
+        "Voice-first interface with speech-to-text and calming text-to-speech.",
+        "AWS Bedrock agent adapts responses based on context and caregiver input.",
+        "Risk detection pipeline with emotion analysis and RAG-powered tips.",
+        "Smart-home integration for Philips Hue, LIFX, and Fire TV devices.",
+        "Privacy-focused design with in-session conversation storage.",
+      ],
+      diagram: "/case-studies/calm-detail.svg",
+    },
+    results: [
+      {
+        metric: "Caregiver Support",
+        before: "Reactive response",
+        after: "Real-time insights",
+        insight: "Dashboard shows risk trends, triggers, and actionable tips.",
+      },
+      {
+        metric: "Patient Comfort",
+        before: "Manual intervention",
+        after: "Automated calming",
+        insight: "Smart-home integration creates calming environments automatically.",
+      },
+      {
+        metric: "Privacy Protection",
+        before: "Cloud storage",
+        after: "In-session only",
+        insight: "Conversations stay local; only hashed snapshots sent to AWS.",
+      },
+    ],
+    impact: [
+      "Provides real-time emotional support for Alzheimer's patients.",
+      "Reduces caregiver burnout with actionable insights and automation.",
+      "Privacy-first architecture ensures patient data protection.",
+    ],
+    deepDive: [
+      {
+        title: "Emotion Analysis Pipeline",
+        content:
+          "The system uses heuristic scoring and emotion analysis to detect risk patterns. RAG-powered retrieval provides caregivers with evidence-based tips tailored to each situation.",
+      },
+      {
+        title: "Smart Home Integration",
+        content:
+          "Optional integrations with Philips Hue, LIFX, and Fire TV enable automated environmental adjustments. Calming lighting and audio can be triggered based on detected agitation levels.",
+      },
+      {
+        title: "Caregiver Dashboard",
+        content:
+          "Streamlit-based dashboard visualizes risk trends, common triggers, and conversation patterns. Caregivers receive actionable tips and can track improvement over time.",
+      },
+    ],
+    related: ["audra-rad", "agentic-radiology-assistant"],
+    highlights: [
+      { metric: "Patient Agitation", value: "80%+ addressed", delta: "increase" },
+      { metric: "Caregiver Burnout", value: "70% experience relief", delta: "decrease" },
+      { metric: "Privacy", value: "In-session storage", delta: "increase" },
     ],
   },
 };
