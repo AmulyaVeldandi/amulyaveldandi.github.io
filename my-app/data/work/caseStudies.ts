@@ -81,7 +81,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "All forecasts stream into an audit log with outcomes. Weekly refresh scripts compare predictions vs. realised throughput, flagging drift beyond 7%. Dashboards track false positives, manual overrides, and vendor firmware updates.",
       },
     ],
-    related: ["sq-mri-cdss", "agentic-radiology-assistant"],
+    related: ["sq-mri-cdss", "audra-rad"],
     highlights: [
       { metric: "Technologist ROI", value: "-80%", delta: "decrease" },
       { metric: "Forecast Accuracy", value: "±4.6 min", delta: "increase" },
@@ -175,91 +175,6 @@ export const caseStudies: Record<string, CaseStudy> = {
       { metric: "Pipeline Deploys", value: "3 sites", delta: "increase" },
     ],
   },
-  "agentic-radiology-assistant": {
-    slug: "agentic-radiology-assistant",
-    title: "Agentic Radiology Workflow Assistant",
-    category: "Agentic AI",
-    description:
-      "Responsible agentic workflows that triage imaging follow-ups, reconcile reports, and surface drift to clinical leads.",
-    heroImage: "/case-studies/neuro-hero.svg",
-    heroAlt: "Agentic radiology workflow illustration.",
-    techStack: ["LangChain", "OpenAI", "Supabase", "FastAPI", "Power BI"],
-    overview: {
-      problem:
-        "Radiology teams drowned in follow-up tracking and manual reconciliation, leading to delayed escalations and unreviewed AI outputs.",
-      role: "Product & Technical Lead",
-      timeline: "Aug 2024 – Jan 2025",
-    },
-    challenge: {
-      heading: "Follow-up tracking consumed clinical bandwidth",
-      body:
-        "Report addenda, incidental findings, and AI-assisted reads had no unified triage. Clinicians worked from spreadsheets and inbox reminders.",
-      bullets: [
-        "12k+ yearly follow-ups tracked manually across email and Excel.",
-        "No feedback loop for AI disagreements or drift signals.",
-        "Lack of governance artifacts slowed leadership approvals.",
-      ],
-    },
-    approach: {
-      heading: "Agentic loop aligned with clinical governance",
-      body:
-        "We designed agents for retrieval, summarisation, and escalation with explicit human checkpoints. Every action is logged with clinical rationale for audit.",
-      bullets: [
-        "Retrieval agents compile cohorts from PACS, BI, and EHR using FHIR microservices.",
-        "Summarisation agents draft context-rich briefs that clinicians approve in under 2 minutes.",
-        "Governance agent publishes weekly drift & safety dashboards for leadership review.",
-      ],
-      diagram: "/case-studies/neuro-detail.svg",
-    },
-    results: [
-      {
-        metric: "Follow-up Turnaround",
-        before: "14 days",
-        after: "3 days",
-        insight: "Automated reminders and escalations with human-in-the-loop checkpoints.",
-      },
-      {
-        metric: "AI Disagreement Resolution",
-        before: "21 days",
-        after: "48 hours",
-        insight: "Drift surfaced with ready-to-review evidence bundles.",
-      },
-      {
-        metric: "Clinician Time",
-        before: "5 hr/week",
-        after: "1.2 hr/week",
-        insight: "Summaries and agent governance reduced admin burden.",
-      },
-    ],
-    impact: [
-      "90% of escalations now include patient context, imaging, and recommendation snapshots.",
-      "Leadership reviews include a full trace of agent actions, rationales, and overrides.",
-      "Framework reused across perioperative and quality teams to launch new agentic pilots.",
-    ],
-    deepDive: [
-      {
-        title: "Safety Rails",
-        content:
-          "Every agent requires explicit clinician validation before updates reach the EHR. Staged rollouts with shadow mode logging identified failure modes ahead of production.",
-      },
-      {
-        title: "Knowledge Graph",
-        content:
-          "A radiology knowledge graph maps modalities, findings, and follow-up recommendations. Agents use graph traversal to validate suggestions before surfacing to clinicians.",
-      },
-      {
-        title: "Feedback Loop",
-        content:
-          "Clinician feedback trains evaluation prompts measuring helpfulness, accuracy, and empathy. Scores feed into weekly QA dashboards and agent retraining cadences.",
-      },
-    ],
-    related: ["ct-throughput-optimizer", "sq-mri-cdss"],
-    highlights: [
-      { metric: "Turnaround", value: "↓78%", delta: "decrease" },
-      { metric: "Escalation Accuracy", value: "↑30%", delta: "increase" },
-      { metric: "Reuse", value: "2 additional service lines", delta: "increase" },
-    ],
-  },
   "audra-rad": {
     slug: "audra-rad",
     title: "AuDRA-Rad: Autonomous Radiology Assistant",
@@ -340,7 +255,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "Deployed on AWS EKS with Kubernetes orchestration, the system scales dynamically based on report volume. OpenSearch Serverless provides fast semantic search across embedded medical guidelines.",
       },
     ],
-    related: ["agentic-radiology-assistant", "ct-throughput-optimizer"],
+    related: ["ct-throughput-optimizer", "sq-mri-cdss"],
     highlights: [
       { metric: "Infrastructure Cost", value: "$3/hour", delta: "increase" },
       { metric: "Guideline Access", value: "Automated", delta: "increase" },
@@ -428,7 +343,7 @@ export const caseStudies: Record<string, CaseStudy> = {
           "Streamlit-based dashboard visualizes risk trends, common triggers, and conversation patterns. Caregivers receive actionable tips and can track improvement over time.",
       },
     ],
-    related: ["audra-rad", "agentic-radiology-assistant"],
+    related: ["audra-rad", "ct-throughput-optimizer"],
     highlights: [
       { metric: "Patient Agitation", value: "80%+ addressed", delta: "increase" },
       { metric: "Caregiver Burnout", value: "70% experience relief", delta: "decrease" },
