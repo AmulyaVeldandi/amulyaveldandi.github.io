@@ -10,7 +10,7 @@ const metrics = (entries: ImpactMetric[]): ImpactMetric[] => entries;
 export const projects: Project[] = [
   {
     slug: "ct-throughput-optimizer",
-    title: "CT Throughput Optimizer",
+    title: "Cleveland Clinic CT Throughput Optimizer",
     summary:
       "Predictive attenuation pipeline that unlocks CT capacity with explainable scheduling alerts.",
     description:
@@ -35,7 +35,7 @@ export const projects: Project[] = [
   },
   {
     slug: "sq-mri-cdss",
-    title: "SQ-MRI Clinical Decision Support",
+    title: "Pancreatitis SQ-MRI Clinical Decision Support",
     summary:
       "Reproducible pancreas biomarker pipeline that harmonises SQ-MRI scoring across vendors.",
     description:
