@@ -1,11 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
-import { caseStudyList } from "@/data/work/caseStudies";
+import { getCaseStudies } from "@/data/work-items";
 import { AnimatedSection } from "../shared/AnimatedSection";
 import { Badge } from "../shared/Badge";
 import { Button } from "../shared/Button";
 
 export function CaseStudyShowcase() {
+  const caseStudies = getCaseStudies();
+
   return (
     <AnimatedSection className="mt-16 space-y-8 rounded-[2.5rem] border border-[var(--border-muted)] bg-[var(--surface)]/90 p-8 backdrop-blur lg:p-12">
       <header className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
@@ -21,7 +22,7 @@ export function CaseStudyShowcase() {
         </Button>
       </header>
       <div className="grid gap-6 lg:grid-cols-3">
-        {caseStudyList.map((study) => (
+        {caseStudies.map((study) => (
           <article
             key={study.slug}
             className="flex h-full flex-col overflow-hidden rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 shadow-card transition hover:-translate-y-1 hover:border-[var(--border-accent)]"
@@ -50,17 +51,19 @@ export function CaseStudyShowcase() {
               </div>
               <h3 className="text-xl font-semibold text-[var(--foreground)]">{study.title}</h3>
               <p className="text-sm text-[var(--muted)] leading-relaxed">{study.description}</p>
-              <ul className="space-y-2 text-sm text-[var(--muted)]">
-                <li>
-                  <strong>Problem</strong>: {study.overview.problem}
-                </li>
-                <li>
-                  <strong>Role</strong>: {study.overview.role}
-                </li>
-                <li>
-                  <strong>Timeline</strong>: {study.overview.timeline}
-                </li>
-              </ul>
+              {study.overview && (
+                <ul className="space-y-2 text-sm text-[var(--muted)]">
+                  <li>
+                    <strong>Problem</strong>: {study.overview.problem}
+                  </li>
+                  <li>
+                    <strong>Role</strong>: {study.overview.role}
+                  </li>
+                  <li>
+                    <strong>Timeline</strong>: {study.overview.timeline}
+                  </li>
+                </ul>
+              )}
               <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.3em] text-[var(--muted)]">
                 {study.techStack.slice(0, 6).map((tech) => (
                   <Badge key={`${study.slug}-${tech}`} variant="neutral">

@@ -1,0 +1,266 @@
+---
+title: "HITI Lab Datathon 2024 - AI-Driven Healthcare Solutions"
+date: "2024-06-20"
+category: "Event"
+tags: ["datathon", "healthcare-ai", "nlp", "clinical-decision-support", "team-competition"]
+readingTime: "5 min read"
+description: "Returned to HITI Lab Datathon 2024 with enhanced skills, tackling clinical NLP challenges and building AI-driven decision support systems for real-world healthcare applications."
+eventName: "HITI Lab Datathon 2024"
+eventLocation: "Cleveland, OH"
+eventDate: "June 2024"
+role: "Participant"
+featured: true
+coverImage: "/images/events/hiti-datathon-2024.svg"
+coverAlt: "HITI Lab Datathon 2024 event illustration"
+---
+
+## Event Overview
+
+Building on the foundation from 2023, the HITI Lab Datathon 2024 pushed participants to new frontiers in healthcare AI. This year's focus shifted towards clinical natural language processing and decision support systems, addressing the critical need for automated clinical documentation and intelligent patient risk stratification.
+
+## Challenge: Clinical NLP & Risk Prediction
+
+### Problem Statement
+
+Healthcare systems generate massive amounts of unstructured clinical text—radiology reports, clinical notes, discharge summaries—that contain crucial patient information but remain largely untapped for decision support. Our challenge:
+
+**Build an NLP pipeline to extract structured insights from clinical narratives and predict patient outcomes**
+
+### Dataset
+
+- **Size**: 50,000+ de-identified clinical notes
+- **Sources**: Emergency department notes, radiology reports, discharge summaries
+- **Annotations**: Limited ground truth for key clinical entities
+- **Task**: Extract clinical concepts, relationships, and predict 30-day readmission risk
+
+## Our Solution Architecture
+
+### Phase 1: Clinical Entity Recognition
+
+**Approach**: Fine-tuned BioClinicalBERT for medical entity extraction
+
+```python
+# Key entities targeted
+- Medications and dosages
+- Diagnoses and conditions
+- Procedures and interventions
+- Lab results and vital signs
+- Social determinants of health
+```
+
+**Challenges Addressed**:
+- Handling medical abbreviations and acronyms
+- Dealing with negation and uncertainty
+- Extracting temporal information
+- Managing context dependencies
+
+### Phase 2: Relationship Extraction
+
+Built a relationship extraction module to connect entities:
+
+1. **Medication-Condition Links**: Which drugs treat which conditions
+2. **Temporal Sequences**: Order of events and procedures
+3. **Causal Relationships**: Cause-effect patterns in clinical narratives
+4. **Severity Indicators**: Extracting severity modifiers and qualifiers
+
+### Phase 3: Risk Prediction Model
+
+**Multi-modal Architecture**:
+- **Text Encoder**: BERT-based representations of clinical notes
+- **Structured Data**: Demographics, lab values, vital signs
+- **Fusion Layer**: Attention-based combination of modalities
+- **Output**: Probability of 30-day readmission
+
+**Key Innovation**: Attention mechanism that highlighted which parts of clinical notes contributed most to predictions, providing interpretability for clinicians.
+
+## Technical Implementation
+
+### NLP Pipeline
+
+**Preprocessing**:
+```
+Clinical Text → Tokenization → Entity Recognition →
+Relationship Extraction → Feature Engineering → Risk Scoring
+```
+
+**Libraries & Frameworks**:
+- **Transformers**: Hugging Face for BERT models
+- **spaCy**: Medical entity recognition and custom pipelines
+- **scispaCy**: Biomedical NLP components
+- **BioBERT**: Pre-trained medical language models
+- **UMLS**: Unified Medical Language System for concept normalization
+
+### Model Training Strategy
+
+1. **Transfer Learning**: Started with BioClinicalBERT pre-trained on MIMIC-III
+2. **Domain Adaptation**: Fine-tuned on provided clinical notes
+3. **Multi-task Learning**: Jointly trained entity recognition and relation extraction
+4. **Ensemble**: Combined multiple model predictions for robustness
+
+### Evaluation Framework
+
+**Metrics**:
+- **Entity Recognition**: F1-score of 0.89 for key medical entities
+- **Readmission Prediction**: AUC-ROC of 0.82, precision-recall AUPRC of 0.76
+- **Calibration**: Brier score of 0.14, indicating well-calibrated probabilities
+- **Clinical Validation**: 91% agreement with clinician assessments on test cases
+
+## Results & Achievements
+
+### Performance Highlights
+
+| Metric | Score | Benchmark |
+|--------|-------|-----------|
+| Entity F1 | 0.89 | 0.72 (baseline) |
+| Readmission AUC | 0.82 | 0.68 (baseline) |
+| Inference Time | <2s | Real-time capable |
+| Interpretability | High | Attention visualizations |
+
+### Competitive Standing
+
+- **Top 3 Finish**: Ranked 3rd overall among 25 competing teams
+- **Innovation Award**: Recognized for explainable AI approach
+- **Clinical Impact**: Solution identified as having high deployment potential
+
+## What Made This Year Different
+
+### Evolved Skills
+
+Compared to 2023, I brought:
+- **Deeper NLP Expertise**: From foundational ML to advanced transformer models
+- **Clinical Domain Knowledge**: Better understanding of medical terminology and workflows
+- **Deployment Thinking**: Focused on practical implementation from day one
+- **Team Leadership**: Took on more coordination and architecture decisions
+
+### Advanced Techniques Applied
+
+1. **Few-Shot Learning**: Adapted models with limited labeled data
+2. **Active Learning**: Strategically selected samples for annotation
+3. **Confidence Calibration**: Ensured probability outputs were trustworthy
+4. **Fairness Analysis**: Checked for demographic bias in predictions
+
+## Collaboration & Teamwork
+
+### Interdisciplinary Dynamics
+
+Our team composition:
+- 2 Data Scientists (including me)
+- 1 Clinical Informaticist
+- 1 Emergency Department Physician
+- 1 Medical Student
+
+**Key Success Factors**:
+- **Daily Stand-ups**: Quick alignment on progress and blockers
+- **Clinical Validation Sessions**: Physician reviewed model outputs continuously
+- **Pair Programming**: Collaborated on critical components
+- **Knowledge Sharing**: Everyone learned something new
+
+### Clinical Partnership
+
+Working directly with ED physicians taught me:
+- **Clinical Workflow Integration**: Where and how AI fits into real practice
+- **Trust Building**: What clinicians need to trust algorithmic recommendations
+- **Error Tolerance**: Understanding acceptable false positive/negative rates
+- **Actionability**: Ensuring predictions lead to clear clinical actions
+
+## Technical Deep Dive: Attention Mechanism
+
+### Interpretability Through Attention
+
+One of our key innovations was making the model explainable:
+
+```python
+# Attention weights showed which clinical note segments
+# most influenced readmission predictions
+
+High-attention phrases correlated with known risk factors:
+- "history of multiple admissions"
+- "non-adherence to medications"
+- "inadequate social support"
+- "uncontrolled chronic conditions"
+```
+
+**Clinical Impact**: Physicians could see *why* the model made predictions, building trust and enabling validation against clinical judgment.
+
+## Lessons Learned
+
+### Technical Insights
+
+1. **Data Quality > Model Complexity**: Clean, well-annotated data outperformed complex models on noisy data
+2. **Domain Pre-training Matters**: BioClinicalBERT significantly outperformed general BERT
+3. **Calibration is Critical**: Well-calibrated probabilities more useful than raw predictions
+4. **Inference Speed**: Real-time constraints shaped architecture choices
+
+### Process Improvements
+
+1. **Version Control Everything**: Data splits, model checkpoints, evaluation scripts
+2. **Continuous Validation**: Frequent check-ins with clinicians prevented wasted effort
+3. **Modular Design**: Separated components enabled parallel development
+4. **Documentation**: Clear READMEs and comments saved time during debugging
+
+### Collaborative Best Practices
+
+1. **Shared Vocabulary**: Established common terminology early
+2. **Role Clarity**: Everyone knew their responsibilities
+3. **Decision Framework**: Clear process for resolving disagreements
+4. **Celebration Moments**: Recognized small wins to maintain momentum
+
+## Impact Beyond the Competition
+
+### Networking Outcomes
+
+- Connected with researchers from Mayo Clinic, Johns Hopkins, and Stanford
+- Identified potential collaborators for future projects
+- Learned about exciting NLP applications in different clinical domains
+- Received mentorship offers from senior researchers
+
+### Skill Development
+
+**New Competencies Gained**:
+- Advanced transformer architectures for clinical text
+- Production-grade NLP pipeline development
+- Clinical workflow analysis and integration planning
+- Bias detection and mitigation in healthcare AI
+
+## Future Applications
+
+This experience directly influenced my subsequent work:
+
+1. **Radiology Report Summarization**: Applied NLP techniques to automate report generation
+2. **AuDRA-Rad Project**: Incorporated clinical NLP for guideline retrieval
+3. **CalmCompanion**: Used NLP for emotion detection in patient conversations
+4. **Research Direction**: Shaped my focus on explainable healthcare AI
+
+## Reflection: Growth From 2023 to 2024
+
+### Technical Evolution
+
+**2023**: Foundation in medical imaging, basic ML pipelines, supervised learning
+**2024**: Advanced NLP, transfer learning, multi-modal fusion, explainable AI
+
+### Mindset Shift
+
+**2023**: "How can I build the most accurate model?"
+**2024**: "How can I build a model clinicians will trust and use?"
+
+This shift from pure performance to practical deployment thinking has become central to my approach to healthcare AI.
+
+## Takeaways for Future Datathons
+
+1. **Team Diversity**: Mix of technical and domain expertise is essential
+2. **Early Validation**: Get feedback from end-users throughout, not just at the end
+3. **Realistic Scope**: Better to solve one problem well than tackle everything poorly
+4. **Documentation**: Future-you and your team will thank present-you
+5. **Have Fun**: Competitive energy is motivating, but enjoying the process matters most
+
+## Conclusion
+
+HITI Lab Datathon 2024 represented a significant milestone in my journey toward building impactful healthcare AI solutions. The combination of technical challenge, clinical collaboration, and competitive environment created an ideal learning opportunity.
+
+The relationships built, skills developed, and insights gained continue to shape my work. Most importantly, the experience reinforced that the best healthcare AI isn't just technically sophisticated—it's clinically useful, interpretable, and trustworthy.
+
+Looking forward to HITI Lab Datathon 2025!
+
+---
+
+*Grateful to HITI Lab for organizing such an impactful event, to my amazing teammates for their collaboration, and to the clinical partners who shared their expertise and time.*

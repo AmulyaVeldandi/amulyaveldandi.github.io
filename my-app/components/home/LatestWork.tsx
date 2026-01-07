@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { blogPosts } from "@/data/blog/posts";
-import { getFeaturedProjects } from "@/data/projects";
+import { getFeaturedWorkItems } from "@/data/work-items";
 import { AnimatedSection } from "../shared/AnimatedSection";
 import { Badge } from "../shared/Badge";
 import { Button } from "../shared/Button";
 import { Card } from "../shared/Card";
 
 export function LatestWork() {
-  const featuredProjects = getFeaturedProjects(3);
+  const featuredProjects = getFeaturedWorkItems(3);
   const latestBlog = [...blogPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   )[0];
@@ -35,7 +35,7 @@ export function LatestWork() {
             <Card key={project.slug} className="p-5 sm:p-6 sm:col-span-1">
               <div className="flex items-center justify-between gap-2 text-fluid-xs uppercase tracking-[0.35em] text-[var(--muted)]">
                 <span>{new Date(project.published).getFullYear()}</span>
-                {project.caseStudySlug ? (
+                {project.type === "case-study" ? (
                   <Badge variant="outline" className="text-[0.6rem]">
                     Case Study
                   </Badge>
@@ -51,9 +51,9 @@ export function LatestWork() {
                 ))}
               </ul>
               <div className="mt-4 flex items-center justify-between text-xs uppercase tracking-[0.35em] text-[var(--muted)]">
-                <span>{project.metrics[0]?.value ?? ""}</span>
+                <span>{project.metrics?.[0]?.value ?? ""}</span>
                 <Link
-                  href={`/projects/${project.slug}`}
+                  href={`/work/${project.slug}`}
                   className="font-semibold text-[var(--accent)] transition hover:text-[var(--accent-foreground)]"
                 >
                   Read →

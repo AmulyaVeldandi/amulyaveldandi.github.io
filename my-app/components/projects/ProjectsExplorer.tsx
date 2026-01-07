@@ -3,14 +3,15 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/data/projects";
-import type { Project } from "@/lib/content-types";
+import { getProjects } from "@/data/work-items";
+import type { WorkItem } from "@/lib/content-types";
 import { AnimatedSection } from "../shared/AnimatedSection";
 import { Badge } from "../shared/Badge";
 import { Button } from "../shared/Button";
 
-const categories = Array.from(new Set(projects.flatMap((project) => project.tags.map((tag) => tag.category))));
-const techStacks = Array.from(new Set(projects.flatMap((project) => project.techStack)));
+const allProjects = getProjects();
+const categories = Array.from(new Set(allProjects.flatMap((project) => project.tags.map((tag) => tag.category))));
+const techStacks = Array.from(new Set(allProjects.flatMap((project) => project.techStack)));
 
 export function ProjectsExplorer() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -18,7 +19,7 @@ export function ProjectsExplorer() {
   const [selectedTech, setSelectedTech] = useState<string>("All");
 
   const filtered = useMemo(() => {
-    return projects.filter((project) => {
+    return allProjects.filter((project) => {
       const matchesCategory = selectedCategory === "All" || project.tags.some((tag) => tag.category === selectedCategory);
       const matchesTech = selectedTech === "All" || project.techStack.includes(selectedTech);
       const matchesSearch = search.trim().length === 0
@@ -105,8 +106,9 @@ function FilterButton({ label, active, onClick }: { label: string; active: boole
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const url = project.caseStudySlug ? `/work/${project.caseStudySlug}` : `/projects/${project.slug}`;
+function ProjectCard({ project }: { project: WorkItem }) {
+  // All projects now use /work route
+  const url = `/work/${project.slug}`;
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-[var(--border-muted)] bg-[var(--surface)]/90 shadow-card transition hover:-translate-y-1 hover:border-[var(--border-accent)]">
       <div className="relative h-56 w-full">
@@ -138,14 +140,16 @@ function ProjectCard({ project }: { project: Project }) {
             </Badge>
           ))}
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {project.metrics.map((metric) => (
-            <div key={`${project.slug}-${metric.label}`} className="rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 px-4 py-3 text-sm">
-              <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">{metric.label}</p>
-              <p className="mt-1 font-semibold text-[var(--accent)]">{metric.value}</p>
-            </div>
-          ))}
-        </div>
+        {project.metrics && project.metrics.length > 0 && (
+          <div className="grid gap-3 sm:grid-cols-2">
+            {project.metrics.map((metric) => (
+              <div key={`${project.slug}-${metric.label}`} className="rounded-2xl border border-[var(--border-muted)] bg-[var(--surface-elevated)]/85 px-4 py-3 text-sm">
+                <p className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">{metric.label}</p>
+                <p className="mt-1 font-semibold text-[var(--accent)]">{metric.value}</p>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="mt-auto flex items-center justify-between pt-2 text-xs uppercase tracking-[0.35em] text-[var(--muted)]">
           {project.github ? (
             <Link

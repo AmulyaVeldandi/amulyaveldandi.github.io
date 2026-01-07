@@ -153,7 +153,7 @@ export type Publication = {
   link?: string;
 };
 
-export type BlogCategory = "Conference" | "Tutorial" | "Research" | "Reflection";
+export type BlogCategory = "Event" | "Conference" | "Tutorial" | "Research" | "Reflection";
 
 export type BlogFrontMatter = {
   title: string;
@@ -165,9 +165,75 @@ export type BlogFrontMatter = {
   featured?: boolean;
   coverImage?: string;
   coverAlt?: string;
+  // Event-specific fields
+  eventName?: string;
+  eventLocation?: string;
+  eventDate?: string;
+  role?: "Speaker" | "Attendee" | "Panelist" | "Organizer" | "Participant";
+  highlights?: string[];
 };
 
 export type BlogPostMeta = BlogFrontMatter & {
   slug: string;
   file: string;
+};
+
+// Unified WorkItem type that combines Projects and Case Studies
+export type WorkItemType = "case-study" | "project" | "research";
+
+export type WorkItem = {
+  slug: string;
+  title: string;
+  type: WorkItemType;
+  summary: string;
+  description: string;
+
+  // Basic metadata
+  tags: ProjectTag[];
+  category?: string; // e.g., "Clinical Operations", "Healthcare AI", etc.
+  coverImage: string;
+  coverAlt: string;
+  techStack: string[];
+  published: string;
+  featured?: boolean;
+
+  // Optional links
+  github?: string;
+  demo?: string;
+
+  // Metrics (shared by both projects and case studies)
+  metrics?: ImpactMetric[];
+
+  // Rich content sections (optional - for detailed case studies)
+  heroImage?: string;
+  heroAlt?: string;
+
+  overview?: {
+    problem: string;
+    role: string;
+    timeline: string;
+    teamSize?: string;
+  };
+
+  challenge?: CaseStudySection;
+
+  approach?: CaseStudySection & { diagram?: string };
+
+  results?: {
+    metric: string;
+    before: string;
+    after: string;
+    insight: string;
+  }[];
+
+  impact?: string[];
+
+  deepDive?: {
+    title: string;
+    content: string;
+  }[];
+
+  related?: string[];
+
+  highlights?: CaseStudyHighlight[];
 };

@@ -1,0 +1,346 @@
+---
+title: "AMIA Informatics Summit 2025 - Shaping the Future of Health Informatics"
+date: "2025-03-15"
+category: "Event"
+tags: ["conference", "health-informatics", "clinical-informatics", "ehr", "interoperability"]
+readingTime: "5 min read"
+description: "Participated in AMIA Informatics Summit 2025, exploring innovations in clinical informatics, EHR optimization, and AI integration in healthcare systems."
+eventName: "AMIA Informatics Summit 2025"
+eventLocation: "San Francisco, CA"
+eventDate: "March 10-13, 2025"
+role: "Attendee"
+featured: true
+coverImage: "/images/events/amia-is-2025.svg"
+coverAlt: "AMIA Informatics Summit 2025 illustration"
+---
+
+## Summit Overview
+
+The AMIA Informatics Summit 2025 in San Francisco brought together clinical informaticists, data scientists, healthcare administrators, and technology leaders to address critical challenges in health informatics. As healthcare systems increasingly rely on digital infrastructure, this summit focused on practical solutions for EHR optimization, interoperability, AI integration, and clinical decision support.
+
+## Summit Themes
+
+### Core Focus Areas
+
+1. **Clinical Decision Support Systems**: Next-generation CDSS leveraging AI and real-time data
+2. **EHR Optimization**: Reducing clinician burden and improving usability
+3. **Interoperability**: FHIR standards and seamless data exchange
+4. **AI Integration**: Embedding machine learning into clinical workflows
+5. **Patient Engagement**: Digital tools empowering patients in their care
+6. **Data Governance**: Privacy, security, and ethical use of health data
+
+## Keynote Highlights
+
+### "The Future of Clinical Informatics: From Data to Wisdom"
+
+**Speaker**: Dr. Judith Faulkner (Founder & CEO, Epic Systems)
+
+**Key Messages**:
+- **Data Deluge**: Healthcare generates massive data, but struggles to extract actionable insights
+- **Interoperability Progress**: FHIR adoption accelerating, but implementation challenges remain
+- **AI Integration**: Predictive models must be seamlessly embedded in clinical workflows
+- **Clinician Well-being**: Technology should reduce burden, not add to it
+- **Patient Partnership**: Patients are co-pilots, not passive recipients of care
+
+**Quote That Resonated**: *"We've won the battle for digitization. Now we must win the war for usability and intelligence."*
+
+**My Reflection**: This aligns with my experience in the CT Throughput Optimizer and Radiology Report Summarization projects—technical solutions must fit naturally into existing workflows to be adopted.
+
+### Panel: "AI in Clinical Practice: Beyond the Hype"
+
+**Panelists**:
+- Dr. Eric Topol (Scripps Research)
+- Dr. Suchi Saria (Johns Hopkins)
+- Dr. Nigam Shah (Stanford)
+- Dr. Regina Barzilay (MIT)
+
+**Discussion Points**:
+
+**Transparency & Trust**:
+- Clinicians need to understand *why* models make predictions
+- Black-box models create liability concerns
+- Explainability is not optional—it's essential for clinical adoption
+
+**Data Quality & Bias**:
+- "Garbage in, garbage out" applies even more in healthcare
+- Models trained on biased data perpetuate health disparities
+- Continuous monitoring for drift and fairness is critical
+
+**Integration Challenges**:
+- EHR vendors slow to integrate third-party AI models
+- Workflow interruption is the #1 reason clinicians abandon tools
+- Alert fatigue from poorly designed CDSS
+
+**Regulatory Landscape**:
+- FDA evolving approach to AI/ML medical devices
+- Reimbursement models don't yet value AI-assisted care
+- Liability questions remain unresolved
+
+**My Takeaway**: Success requires addressing technical, regulatory, and workflow challenges simultaneously. My AuDRA-Rad project aims to tackle these holistically.
+
+## Sessions Attended
+
+### Track: Clinical Decision Support
+
+#### "Intelligent Alerts: Reducing Fatigue While Improving Safety"
+
+**Presenters**: Mayo Clinic Informatics Team
+
+**Problem**: Alert overload leads to clinician burnout and dangerous "alert fatigue"—ignoring critical warnings
+
+**Solutions Implemented**:
+1. **Machine Learning for Alert Prioritization**: Predict which alerts clinicians will actually act on
+2. **Contextual Delivery**: Show alerts only when relevant to current task
+3. **Smart Suppression**: Temporarily hide low-priority alerts during critical activities
+4. **Adaptive Thresholds**: Adjust based on patient risk and clinician specialty
+
+**Results**:
+- 40% reduction in total alerts
+- 75% increase in alert acceptance rate
+- 92% clinician satisfaction improvement
+- No increase in adverse events
+
+**Relevance to My Work**: Directly applicable to AuDRA-Rad—ensuring recommendations are timely, relevant, and actionable.
+
+#### "Real-Time Clinical Guidelines at the Point of Care"
+
+**Author**: Dr. David Bates (Brigham & Women's Hospital)
+
+**Innovation**: FHIR-based guideline retrieval integrated with EHR
+
+**How It Works**:
+1. Monitor patient context in real-time
+2. Retrieve relevant clinical guidelines
+3. Present summarized recommendations in workflow
+4. Allow easy documentation of adherence or deviation
+
+**Clinical Impact**:
+- Improved guideline adherence from 42% to 78%
+- Reduced unnecessary variations in care
+- Better documentation of clinical reasoning
+- Positive impact on quality metrics
+
+**Connection to AuDRA-Rad**: My autonomous radiology assistant implements similar concepts—retrieving ACR/Fleischner guidelines and generating actionable recommendations.
+
+### Track: Interoperability & Data Exchange
+
+#### "FHIR in Production: Lessons from Large-Scale Implementations"
+
+**Panel with Representatives from**:
+- Kaiser Permanente
+- Cleveland Clinic
+- Partners HealthCare
+- Veterans Health Administration
+
+**Common Challenges**:
+1. **Resource Mapping**: Translating proprietary EHR data to FHIR resources
+2. **Version Management**: Handling updates to FHIR specifications
+3. **Performance**: Optimizing queries for large patient populations
+4. **Security**: Ensuring OAuth 2.0 and other auth mechanisms work correctly
+5. **Buy-in**: Getting clinical and IT stakeholders aligned
+
+**Success Factors**:
+- Start small with specific use cases
+- Invest in robust testing infrastructure
+- Prioritize clinician feedback
+- Build internal FHIR expertise
+- Plan for long-term maintenance
+
+**My Learning**: Interoperability is hard. Standards help, but implementation details matter enormously. This informs my thinking about how AuDRA-Rad integrates with hospital systems.
+
+### Track: AI & Machine Learning
+
+#### "Federated Learning for Multi-Site Clinical Research"
+
+**Speakers**: Collaboration between Stanford, Duke, and UCSF
+
+**Use Case**: Training sepsis prediction models across institutions without sharing patient data
+
+**Technical Approach**:
+- **Differential Privacy**: Add noise to protect individual patients
+- **Secure Aggregation**: Hospitals never see each other's data
+- **Homomorphic Encryption**: Compute on encrypted data
+- **Model Averaging**: Combine local models into global model
+
+**Results**:
+- Federated model outperformed single-site models
+- Privacy guarantees maintained throughout
+- Enabled research on 500,000+ patients across sites
+- Deployable at each participating institution
+
+**Relevance**: Could enable my Pancreas SQ-MRI CDSS to learn from multiple institutions while preserving patient privacy.
+
+## Workshops Attended
+
+### Workshop: "Practical AI Deployment in Healthcare"
+
+**Organizers**: Duke Health AI Team
+
+**Hands-On Activities**:
+
+**1. Model Monitoring Dashboard Setup**
+- Tracked prediction distributions over time
+- Detected data drift using statistical tests
+- Alerted when performance degraded
+
+**2. A/B Testing Clinical AI**
+- Designed experiments to measure clinical impact
+- Discussed randomization strategies in clinical settings
+- Analyzed results accounting for clustering and confounders
+
+**3. Building Explainable AI**
+- Implemented LIME and SHAP for model interpretation
+- Created clinical-friendly visualization of feature importance
+- Discussed when explanation methods fail and mislead
+
+**Key Takeaway**: Deployment is where most AI projects fail. Robust engineering, continuous monitoring, and clinician collaboration are essential.
+
+### Tutorial: "Optimizing EHR Workflows with Data Science"
+
+**Instructors**: Cleveland Clinic Informatics Team
+
+**Topics Covered**:
+- **Process Mining**: Analyzing click-stream data to understand actual workflows
+- **Bottleneck Identification**: Finding where clinicians spend unnecessary time
+- **Workflow Redesign**: Data-driven suggestions for improvement
+- **Impact Measurement**: A/B testing workflow changes
+
+**Case Study Presented**: Reducing documentation burden in oncology workflows
+- Analyzed 6 months of EHR usage data
+- Identified repetitive tasks suitable for automation
+- Implemented smart templates and auto-population
+- Reduced documentation time by 28%
+
+**Application to My Projects**: This methodology could optimize the CT scheduling workflow in my Throughput Optimizer project.
+
+## Poster Session & Networking
+
+### Notable Posters
+
+**"NLP for Automated Prior Authorization"**
+- Extracted clinical information from notes to auto-complete prior auth forms
+- Reduced manual effort by 70%
+- Improved approval turnaround time from days to hours
+
+**"Predictive Models for Hospital Readmission Across 12 Institutions"**
+- Federated learning approach trained on 2 million+ patient encounters
+- Achieved AUC of 0.81 across all sites
+- Identified transferable risk factors and site-specific patterns
+
+**"Patient-Generated Health Data Integration"**
+- Incorporated wearable device data into EHR
+- Challenges with data quality, standardization, and volume
+- Promising use cases in chronic disease management
+
+### My Conversations
+
+**Most Valuable Discussion**: Spoke with informatics leaders from Mass General about their experience deploying AI tools
+- Emphasized importance of change management
+- Shared lessons learned from failed deployments
+- Offered to connect me with their AI steering committee
+
+**Potential Collaboration**: Met a team from UCSF working on radiology workflow optimization—aligned with my CT Throughput Optimizer work. Exchanged contact information for future collaboration.
+
+## Professional Development Sessions
+
+### Career Panel: "Paths in Clinical Informatics"
+
+**Panelists from Diverse Backgrounds**:
+- Physician who became CMIO
+- Nurse informaticist in population health
+- PhD data scientist in pharma informatics
+- Software engineer building EHR systems
+
+**Key Insights**:
+- **Many Paths**: Clinical informatics welcomes diverse backgrounds
+- **Hybrid Skills**: Most valuable professionals blend clinical and technical expertise
+- **Impact Focus**: Best work comes from understanding real clinical problems
+- **Lifelong Learning**: Field evolves rapidly—staying current is essential
+- **Networking Matters**: Many opportunities come through relationships
+
+**My Reflection**: My path from medicine to data science fits well in this field. Hybrid expertise is my competitive advantage.
+
+## Key Learnings & Takeaways
+
+### Technical Insights
+
+1. **FHIR is the Future**: Interoperability efforts converging on FHIR
+2. **Federated Learning Enables Collaboration**: Train on data you can't share
+3. **Monitoring is Critical**: Models degrade without continuous oversight
+4. **Alert Fatigue is Real**: Quality over quantity for clinical decision support
+5. **Explainability is Non-Negotiable**: Clinicians need to trust AI recommendations
+
+### Strategic Lessons
+
+1. **Start with Workflow**: Understand current process before proposing solutions
+2. **Measure Clinical Outcomes**: Technical metrics aren't enough
+3. **Build with Clinicians**: Not for them—with them
+4. **Plan for Maintenance**: Deployment is the beginning, not the end
+5. **Address Change Management**: Technology adoption is a people problem
+
+### Applications to My Work
+
+**AuDRA-Rad**:
+- Ensure FHIR compatibility for EHR integration
+- Implement robust monitoring for model performance
+- Design workflow-integrated interface based on AMIA insights
+
+**CT Throughput Optimizer**:
+- Apply process mining to understand actual scheduling workflows
+- Implement federated learning for multi-site deployment
+- Add explainability features for staffing recommendations
+
+**Pancreas SQ-MRI CDSS**:
+- Explore federated learning for cross-institutional standardization
+- Design alerts that avoid fatigue—only show critical discrepancies
+- Ensure FHIR compliance for broader adoption
+
+## Networking Highlights
+
+### Connections Made
+
+- **Academic Leaders**: Prof. Isaac Kohane (Harvard Medical School), discussing AI in precision medicine
+- **Industry Professionals**: Informaticists from Epic, Cerner, and Meditech
+- **Clinical Partners**: CMIOs and CNIOs interested in AI collaboration
+- **Fellow Researchers**: PhD students and postdocs in health informatics
+
+### Social Events
+
+**Opening Reception**: Networking at Pier 39 with views of the Bay
+**Awards Dinner**: Celebrating excellence in health informatics
+**Special Interest Group Meetings**: Joined Clinical Decision Support and AI in Healthcare SIGs
+
+## Future Directions
+
+### Immediate Actions
+
+1. **Join AMIA**: Become active member, participate in working groups
+2. **Submit to AMIA 2026**: Present AuDRA-Rad or CT Optimizer work
+3. **Collaborate**: Follow up with potential collaborators met at summit
+4. **Apply Learnings**: Integrate FHIR standards and monitoring best practices
+5. **Stay Connected**: Engage with AMIA community year-round
+
+### Long-Term Goals
+
+1. **Contribute to Standards**: Participate in FHIR and CDS Hooks development
+2. **Publish in JAMIA**: Target premier informatics journal
+3. **Organize Workshop**: On "Deploying AI in Clinical Radiology" at future summit
+4. **Mentorship**: Guide students interested in clinical informatics
+5. **Policy Engagement**: Contribute to discussions on AI regulation and reimbursement
+
+## Reflection
+
+AMIA Informatics Summit 2025 provided a comprehensive view of the clinical informatics landscape—challenges, opportunities, and emerging solutions. The summit reinforced that successful health IT requires not just technical sophistication, but deep understanding of clinical workflows, regulatory requirements, and human factors.
+
+Most valuable was the community aspect—connecting with practitioners facing similar challenges, learning from their successes and failures, and building relationships that will shape my career.
+
+The field of clinical informatics is at an inflection point. EHR adoption is mature, interoperability is improving, and AI promises to unlock new capabilities. The next phase is about making these systems work better for clinicians and patients—reducing burden, improving care, and realizing the potential of healthcare data.
+
+I'm excited to contribute to this mission through my projects and collaborations, grounded in the lessons learned at AMIA IS 2025.
+
+---
+
+*Conference Resources*:
+- AMIA Website: [amia.org/summit](https://amia.org/summit)
+- Presentation Slides: Available on AMIA Knowledge Center
+- SIG Meetings: Ongoing via virtual sessions

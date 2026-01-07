@@ -4,11 +4,12 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { skillMatrix } from "@/data/skills";
-import { projects } from "@/data/projects";
+import { getAllWorkItems } from "@/data/work-items";
 import { AnimatedSection } from "../shared/AnimatedSection";
 import { Badge } from "../shared/Badge";
 
-const projectLookup = new Map(projects.map((project) => [project.slug, project.title]));
+const allWorkItems = getAllWorkItems();
+const projectLookup = new Map(allWorkItems.map((item) => [item.slug, item.title]));
 
 export function SkillsGrid() {
   const categories = useMemo(() => Object.keys(skillMatrix), []);

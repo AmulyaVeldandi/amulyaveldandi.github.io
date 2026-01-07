@@ -1,0 +1,281 @@
+---
+title: "ISBI 2024 - International Symposium on Biomedical Imaging"
+date: "2024-05-27"
+category: "Event"
+tags: ["conference", "biomedical-imaging", "medical-imaging", "research", "ieee"]
+readingTime: "6 min read"
+description: "Attended ISBI 2024 in Athens, Greece, exploring cutting-edge research in biomedical imaging, machine learning for medical analysis, and the future of computational pathology."
+eventName: "IEEE International Symposium on Biomedical Imaging (ISBI) 2024"
+eventLocation: "Athens, Greece"
+eventDate: "May 27-30, 2024"
+role: "Attendee"
+featured: true
+coverImage: "/images/events/isbi-2024.svg"
+coverAlt: "ISBI 2024 conference illustration"
+---
+
+## Conference Overview
+
+The IEEE International Symposium on Biomedical Imaging (ISBI) 2024, held in the historic city of Athens, Greece, brought together over 1,200 researchers, clinicians, and industry professionals to share the latest advances in biomedical imaging. As one of the premier conferences in medical imaging and computational biology, ISBI 2024 showcased groundbreaking work across imaging modalities, AI methodologies, and clinical applications.
+
+## Conference Themes & Tracks
+
+### Key Focus Areas
+
+1. **Deep Learning for Medical Imaging**: Latest architectures and training strategies
+2. **Multi-Modal Imaging**: Fusion techniques across MRI, CT, PET, and microscopy
+3. **Computational Pathology**: Digital pathology and whole slide image analysis
+4. **Image Reconstruction**: Novel algorithms for improved image quality
+5. **Clinical Translation**: Bridging research and real-world implementation
+6. **Explainable AI**: Making black-box models interpretable for clinical use
+
+## Highlight Sessions
+
+### Keynote: "Foundation Models in Medical Imaging"
+
+**Speaker**: Prof. Ben Glocker (Imperial College London)
+
+Key takeaways:
+- Foundation models pre-trained on large-scale medical imaging datasets show impressive zero-shot and few-shot capabilities
+- Self-supervised learning on diverse imaging data creates versatile representations
+- **Critical Challenge**: Ensuring fairness and avoiding bias amplification across different patient populations and imaging protocols
+- **Future Direction**: Domain-specific foundation models outperform general-purpose models adapted to medical imaging
+
+**My Reflection**: This aligns with my experience in the Brain MRI U-Net project, where pre-training on diverse datasets significantly improved performance on specific downstream tasks.
+
+### Tutorial: "Self-Supervised Learning for Medical Image Analysis"
+
+**Instructors**: Dr. Ilja Morison (Stanford) & Dr. Chen Chen (MIT)
+
+**Topics Covered**:
+- Contrastive learning frameworks (SimCLR, MoCo, BYOL)
+- Masked image modeling for medical images
+- View-invariant representations for multi-view imaging
+- Practical implementation tips and common pitfalls
+
+**Hands-on Component**:
+Implemented contrastive learning on a chest X-ray dataset during the tutorial. The approach yielded features that generalized well to downstream classification tasks with limited labels—directly applicable to my work on radiology report generation.
+
+**Code Shared**:
+```python
+# Simplified contrastive loss implementation
+# Adapted from the tutorial
+
+def contrastive_loss(z_i, z_j, temperature=0.5):
+    """
+    z_i, z_j: augmented views of the same image
+    Returns: NT-Xent loss for self-supervised learning
+    """
+    # Normalize embeddings
+    z_i = F.normalize(z_i, dim=1)
+    z_j = F.normalize(z_j, dim=1)
+
+    # Compute similarity matrix
+    representations = torch.cat([z_i, z_j], dim=0)
+    similarity_matrix = F.cosine_similarity(
+        representations.unsqueeze(1),
+        representations.unsqueeze(0),
+        dim=2
+    )
+
+    # Apply temperature scaling and compute loss
+    ...
+```
+
+## Notable Research Presentations
+
+### Session: Deep Learning Architectures
+
+#### "Vision Transformers for 3D Medical Image Segmentation"
+- **Authors**: Team from Johns Hopkins University
+- **Innovation**: Adapted Swin Transformer for volumetric medical data
+- **Results**: Achieved state-of-the-art performance on BraTS dataset while being 40% more parameter-efficient than 3D U-Net
+- **Relevance**: Could improve my Brain MRI segmentation work with better long-range dependency modeling
+
+#### "Federated Learning for Multi-Site Medical Imaging Studies"
+- **Authors**: Collaboration between Mayo Clinic, Stanford, and MIT
+- **Problem**: Training models across institutions without sharing patient data
+- **Solution**: Differential privacy-enhanced federated learning
+- **Impact**: Enables large-scale collaborative research while preserving privacy
+- **My Interest**: Potential application for pancreas MRI standardization across sites
+
+### Session: Clinical Applications
+
+#### "AI-Assisted Radiology Workflow: Real-World Deployment Lessons"
+- **Presenters**: Cleveland Clinic Radiology Team
+- **Focus**: Challenges in deploying AI models in clinical radiology
+- **Key Lessons**:
+  - Integration with PACS systems is non-trivial
+  - Radiologist workflow disruption must be minimized
+  - Model failures must be handled gracefully
+  - Continuous monitoring is essential for maintaining performance
+- **Resonance**: Directly aligns with challenges I've encountered in CT throughput optimization and radiology report summarization projects
+
+#### "Explainability in Medical AI: What Clinicians Actually Need"
+- **Author**: Dr. Sarah Chen (Stanford Radiology)
+- **Survey Findings**:
+  - 78% of radiologists want to see *which regions* influenced predictions
+  - 65% need to understand *why* the model is confident or uncertain
+  - 89% would trust AI more with uncertainty quantification
+  - Only 34% found traditional saliency maps helpful
+- **Action Items**: Incorporate uncertainty estimation and region highlighting in my future models
+
+## Poster Session Highlights
+
+### My Interactions
+
+**Most Impactful Conversation**: Discussed my CT Throughput Optimizer project with researchers from Mass General Brigham who are working on similar workflow optimization problems. Exchanged ideas on:
+- Feature engineering for clinical time-series data
+- Handling missing data in real-world clinical settings
+- Strategies for model deployment and continuous retraining
+- Measuring clinical impact beyond technical metrics
+
+**Collaboration Opportunity**: Connected with a PhD student from TUM Munich working on pancreas segmentation—potential collaboration on my SQ-MRI CDSS project.
+
+### Standout Posters
+
+1. **"Weakly Supervised Lesion Detection in Whole Slide Images"**
+   - Novel attention-based MIL (Multiple Instance Learning) approach
+   - Achieved competitive performance with only slide-level labels
+   - Promising for scaling annotation efforts in digital pathology
+
+2. **"Uncertainty-Aware Diagnosis Prediction from Retinal Fundus Images"**
+   - Bayesian deep learning for diabetic retinopathy grading
+   - Uncertainty estimates correlated with difficult cases
+   - Could inform which cases need expert review
+
+3. **"Slice-to-Volume Registration for Fetal Brain MRI"**
+   - Real-time reconstruction from motion-corrupted acquisitions
+   - Enables high-quality fetal brain imaging despite movement
+   - Beautiful mathematical formulation and impressive clinical results
+
+## Workshops & Special Sessions
+
+### Workshop: "Challenges in Clinical AI Deployment"
+
+**Panel Discussion**: Regulatory, technical, and organizational barriers
+
+**Key Insights**:
+- **FDA Approval**: Evolving regulatory landscape for AI/ML medical devices
+- **Reimbursement**: Payment models don't yet adequately cover AI-assisted diagnosis
+- **Liability**: Unclear responsibility when AI contributes to clinical decisions
+- **Integration**: Most hospitals lack infrastructure for seamless AI integration
+- **Maintenance**: Models degrade over time due to data drift—ongoing monitoring essential
+
+**My Takeaway**: Technical innovation is necessary but not sufficient. Successful deployment requires addressing regulatory, reimbursement, and workflow integration challenges from the start.
+
+### Session: Grand Challenges
+
+**ISBI Challenge on Cell Segmentation**:
+- Reviewed top-performing solutions
+- Most successful approaches combined:
+  - Data augmentation specific to microscopy artifacts
+  - Ensemble of complementary architectures
+  - Post-processing with domain-specific rules
+- **Learning**: Domain knowledge still matters enormously, even with powerful deep learning
+
+## Networking & Community
+
+### Connections Made
+
+- **Academic Researchers**: Met PhD students and postdocs working on similar problems, established potential collaborations
+- **Industry Professionals**: Conversations with engineers from Philips, Siemens Healthineers, and GE Healthcare about real-world challenges
+- **Clinical Partners**: Connected with radiologists and pathologists interested in AI tools
+- **Conference Friends**: Bonded with fellow attendees over coffee breaks and evening events
+
+### Social Events
+
+**Welcome Reception**: Networking in the shadow of the Acropolis—stunning venue!
+
+**Gala Dinner**: Traditional Greek food, live music, and great conversations about the future of medical imaging
+
+**City Tour**: Explored Athens with a group of fellow researchers, discussing research and life as an engineer/scientist
+
+## Technical Trends Observed
+
+### Emerging Directions
+
+1. **Foundation Models Everywhere**: Nearly every session mentioned pre-training, transfer learning, or foundation models
+2. **Multi-Modal Fusion**: Growing interest in combining imaging with clinical text, genomics, and other data
+3. **Uncertainty Quantification**: Shift from point predictions to distributions and confidence estimates
+4. **Federated & Privacy-Preserving Learning**: Addressing data sharing challenges in healthcare
+5. **Edge Deployment**: Optimizing models for real-time inference on hospital hardware
+6. **Continuous Learning**: Adapting models to distribution shift and new data
+
+### Methodological Shifts
+
+- **From Supervised to Self-Supervised**: Reducing annotation burden
+- **From 2D to 3D**: Better leveraging volumetric structure
+- **From Single-Task to Multi-Task**: Sharing representations across related problems
+- **From Black-Box to Interpretable**: Explaining model decisions to clinicians
+- **From Isolated Models to Integrated Systems**: End-to-end clinical workflows
+
+## Lessons Applied to My Work
+
+### Immediate Applications
+
+1. **CT Throughput Optimizer**:
+   - Incorporate uncertainty quantification to flag predictions the model is unsure about
+   - Implement continuous monitoring for distribution drift
+
+2. **Pancreas SQ-MRI CDSS**:
+   - Explore federated learning for multi-site standardization
+   - Apply self-supervised pre-training to reduce annotation needs
+
+3. **Brain MRI U-Net Lab**:
+   - Upgrade architecture to incorporate transformer blocks
+   - Add attention visualization for interpretability
+
+4. **Radiology Report Summarization**:
+   - Integrate clinical NLP insights from tutorial
+   - Implement contrastive learning for better image-text alignment
+
+### Long-Term Inspiration
+
+- **Research Direction**: Focus on explainable, trustworthy AI for clinical deployment
+- **Collaboration Strategy**: Seek partnerships across institutions for diverse datasets
+- **Publication Goals**: Target venues like ISBI, MICCAI, and MIDL for future work
+- **Impact Metrics**: Measure clinical utility, not just technical performance
+
+## Reflections
+
+### What Made ISBI 2024 Valuable
+
+1. **Cutting-Edge Research**: Exposure to latest methodologies and results
+2. **Clinical Perspective**: Understanding real-world deployment challenges
+3. **Networking**: Building relationships with researchers and practitioners
+4. **Inspiration**: Seeing impactful work motivated me to push my own projects
+5. **Global Community**: Connecting with international researchers broadens perspective
+
+### Growth as a Researcher
+
+ISBI 2024 helped me:
+- **Situate My Work**: See where my projects fit in the broader research landscape
+- **Identify Gaps**: Recognize areas where more work is needed
+- **Refine Focus**: Clarify my research interests and future directions
+- **Improve Communication**: Practice explaining technical work to diverse audiences
+- **Build Confidence**: Realize my work is competitive with leading research groups
+
+## Future Conference Goals
+
+### For ISBI 2025 and Beyond
+
+1. **Submit a Paper**: Present original research, not just attend
+2. **Give a Talk**: Share my work on clinical AI deployment
+3. **Co-Organize a Workshop**: On bridging research and clinical practice
+4. **Expand Network**: Connect with more industry collaborators
+5. **Mentor Newer Researchers**: Help junior colleagues navigate conferences
+
+## Conclusion
+
+Attending ISBI 2024 was a transformative experience that deepened my technical knowledge, expanded my professional network, and clarified my research direction. The conference reinforced that impactful healthcare AI requires not just technical excellence but also clinical validation, interpretability, and thoughtful deployment.
+
+The connections made, lessons learned, and inspiration gained will shape my work for years to come. Most importantly, ISBI 2024 reminded me why I'm passionate about this field: the potential to improve patient care through innovative technology, grounded in rigorous science and clinical reality.
+
+Looking forward to contributing to the community at future ISBI conferences!
+
+---
+
+*Conference Website*: [biomedicalimaging.org/2024](https://biomedicalimaging.org/2024)
+*Proceedings*: Published in IEEE Xplore
+*Photos & Slides*: Available on conference portal

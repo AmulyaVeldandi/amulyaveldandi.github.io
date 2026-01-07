@@ -1,0 +1,451 @@
+---
+title: "SIIM 2025 - Society for Imaging Informatics in Medicine Annual Meeting"
+date: "2025-06-10"
+category: "Event"
+tags: ["conference", "imaging-informatics", "radiology", "pacs", "ai-in-radiology"]
+readingTime: "5 min read"
+description: "Attended SIIM 2025, exploring the intersection of radiology, AI, and clinical informatics. Learned about PACS integration, AI deployment in imaging workflows, and the future of diagnostic radiology."
+eventName: "SIIM Annual Meeting 2025"
+eventLocation: "Nashville, TN"
+eventDate: "June 5-8, 2025"
+role: "Attendee"
+featured: true
+coverImage: "/images/events/siim-2025.svg"
+coverAlt: "SIIM 2025 conference illustration"
+---
+
+## Conference Overview
+
+The Society for Imaging Informatics in Medicine (SIIM) Annual Meeting 2025 in Nashville brought together radiologists, imaging informaticists, PACS administrators, AI researchers, and industry leaders to discuss the rapidly evolving landscape of medical imaging. With AI transformation accelerating in radiology, SIIM 2025 focused on practical deployment strategies, workflow integration, and ensuring AI enhances rather than disrupts radiologist workflows.
+
+## Conference Focus
+
+### Major Themes
+
+1. **AI in Radiology**: From research to clinical deployment
+2. **PACS & Imaging IT**: Next-generation architecture and cloud migration
+3. **Workflow Optimization**: Reducing radiologist burnout through smart automation
+4. **Structured Reporting**: Standardizing radiology reports for better downstream use
+5. **Quantitative Imaging**: Moving beyond qualitative assessments
+6. **Vendor Landscape**: New tools and platforms for imaging departments
+
+## Opening Keynote: "AI as Radiologist's Assistant, Not Replacement"
+
+**Speaker**: Dr. Curtis Langlotz (Stanford Radiology & AIMI Center)
+
+**Core Message**: AI will augment, not replace radiologists—but radiologists who use AI will replace those who don't
+
+**Key Points**:
+
+**Augmentation Over Automation**:
+- AI excels at repetitive tasks (measurement, detection, triage)
+- Radiologists excel at complex reasoning, integration, communication
+- Best outcomes come from human-AI collaboration
+
+**Current AI Capabilities**:
+- **Detection**: Finding lesions with high sensitivity
+- **Quantification**: Measuring volumes, densities, functional parameters
+- **Prioritization**: Triaging critical findings for urgent review
+- **Structured Reporting**: Auto-populating report templates
+- **Follow-up Tracking**: Ensuring recommended imaging happens
+
+**Remaining Challenges**:
+- **Integration**: Most AI tools are standalone, not embedded in workflow
+- **Validation**: Limited prospective studies showing clinical impact
+- **Liability**: Unclear legal responsibility when AI is involved
+- **Trust**: Radiologists need to understand AI limitations
+- **Economics**: Reimbursement doesn't yet account for AI-assisted reads
+
+**Quote That Resonated**: *"The question isn't whether AI will change radiology—it already has. The question is whether we'll shape that change intentionally or let it happen to us."*
+
+**My Reflection**: This aligns perfectly with my AuDRA-Rad project—building AI that assists radiologists in following up on incidental findings, rather than trying to replace their expertise.
+
+## Technical Sessions
+
+### Track: AI Deployment in Clinical Radiology
+
+#### "Lessons from Deploying 50+ AI Models at a Large Academic Center"
+
+**Presenter**: Mass General Brigham Radiology AI Team
+
+**Scale of Deployment**:
+- 50+ AI algorithms in production
+- Processing 2.5 million studies annually
+- 12 different vendors integrated
+- 3 years of operational experience
+
+**Technical Architecture**:
+```
+PACS → AI Orchestration Platform → Multiple AI Engines →
+Results Aggregation → PACS/EHR Integration → Radiologist Worklist
+```
+
+**Critical Success Factors**:
+
+1. **Centralized Orchestration**:
+   - Single platform routes studies to appropriate AI models
+   - Handles vendor differences, version management, routing logic
+   - Provides unified monitoring and alerting
+
+2. **Robust Monitoring**:
+   - Track processing times, failure rates, model performance
+   - Alert on anomalies (drift, errors, delays)
+   - Daily quality reports reviewed by informatics team
+
+3. **Workflow Integration**:
+   - AI results delivered directly to PACS worklist
+   - Structured reports auto-populated
+   - No separate application to open—seamless experience
+
+4. **Clinical Validation**:
+   - Radiology steering committee approves all deployments
+   - Prospective monitoring of AI impact on reads
+   - Regular feedback sessions with radiologists
+
+**Failures & Lessons Learned**:
+- **Early Mistake**: Deployed AI that generated too many false positives → radiologists ignored it
+- **Lesson**: Better a quiet, accurate AI than a noisy, sensitive one
+- **Fix**: Tuned thresholds based on radiologist feedback, not just ROC curves
+
+**Relevance to My Work**: This is exactly the deployment model I'm targeting with AuDRA-Rad—centralized orchestration, seamless integration, continuous monitoring.
+
+#### "Structured Reporting with NLP: Automating Template Population"
+
+**Author**: Cleveland Clinic Imaging Institute
+
+**Problem**: Radiologists spend significant time on repetitive documentation
+
+**Solution**: NLP to extract measurements, findings from voice dictation and auto-populate structured templates
+
+**Implementation**:
+- Real-time speech recognition (already in PACS)
+- NLP entity extraction (measurements, locations, descriptors)
+- Template matching (identify report type from study and context)
+- Smart auto-fill (populate fields with extracted entities)
+- Radiologist review and edit (final approval always with radiologist)
+
+**Results**:
+- 30% reduction in dictation time for certain report types
+- Improved report consistency and completeness
+- Better downstream data extraction for registries and research
+- 85% radiologist satisfaction
+
+**Technical Stack**:
+- Medical NLP models (BioClinicalBERT, RadBERT)
+- Custom entity recognition for radiology-specific terms
+- Rule-based post-processing for validation
+- FHIR API for EHR integration
+
+**Connection to My Work**: Directly relevant to my Radiology Report Summarization project—using NLP to reduce radiologist documentation burden.
+
+### Track: Quantitative Imaging & Biomarkers
+
+#### "AI-Powered Quantification: From Research to Routine Practice"
+
+**Panel Discussion**: Representatives from Penn, Stanford, Duke, and Mayo
+
+**Topics Covered**:
+
+**Why Quantify?**
+- Objective, reproducible measurements
+- Detect subtle changes over time
+- Enable precision medicine approaches
+- Support clinical trials and research
+
+**What to Quantify?**
+- **Oncology**: Tumor volumes, perfusion, metabolic activity
+- **Cardiac**: Ejection fraction, strain, chamber volumes
+- **Neuroimaging**: Brain volumes, white matter lesions, blood flow
+- **Lung**: Emphysema extent, fibrosis patterns
+- **Musculoskeletal**: Cartilage thickness, bone density
+
+**Barriers to Adoption**:
+1. **Time**: Manual quantification too slow for clinical use
+2. **Variability**: Different radiologists/methods yield different results
+3. **Complexity**: Learning curves for quantification software
+4. **Reimbursement**: Often not separately billable
+5. **Clinical Integration**: Results must feed into reports and orders
+
+**AI as Enabler**:
+- Fully automated quantification—fast enough for routine use
+- Consistent measurements across readers and timepoints
+- Seamless integration—results appear in PACS automatically
+- Quality control—flags studies where AI is uncertain
+
+**Success Story - Liver Volumetry**:
+- Pre-surgical liver volume measurement for living donor transplant
+- Manual segmentation: 45 minutes per case
+- AI-automated: 30 seconds per case, 98% agreement with manual
+- Now routine practice at multiple centers
+
+**Relevance**: My CT Throughput Optimizer uses automated segmentation for attenuation profiling—same principle of using AI for time-consuming quantification tasks.
+
+### Track: PACS & Imaging IT
+
+#### "Cloud PACS: Lessons from Early Adopters"
+
+**Presenters**: Organizations that migrated to cloud PACS
+
+**Motivations for Cloud Migration**:
+- Eliminate on-premise hardware maintenance
+- Scalability for growing imaging volumes
+- Disaster recovery and business continuity
+- Access from anywhere (teleradiology, remote reads)
+- Vendor-agnostic AI integration
+
+**Challenges Encountered**:
+
+**1. Performance & Latency**:
+- Large studies (CT, MRI) slow to load over internet
+- Network bandwidth becomes bottleneck
+- Image quality/compression trade-offs
+
+**2. Cost Management**:
+- Storage costs add up quickly with imaging volumes
+- Egress fees for accessing data
+- Need careful lifecycle management policies
+
+**3. Integration Complexity**:
+- Legacy systems not designed for cloud
+- VPN and security configurations complex
+- Workflow changes required
+
+**4. Regulatory & Compliance**:
+- HIPAA compliance in cloud environment
+- Data residency requirements (some countries)
+- Audit trails and access logging
+
+**Best Practices**:
+- Start with new studies, keep archive on-premise initially
+- Invest in robust network infrastructure
+- Negotiate cloud contracts carefully (understand cost model)
+- Plan migration in phases, not big bang
+- Maintain hybrid capability during transition
+
+**My Takeaway**: Cloud migration isn't just technical—it's organizational, financial, and regulatory. AI tools need to work in both cloud and on-premise environments.
+
+## Hands-On Workshops
+
+### Workshop: "Building AI Models for Radiology: End-to-End Pipeline"
+
+**Organizers**: Stanford AIMI & Google Health
+
+**Topics Covered**:
+
+**1. Data Curation**:
+- De-identification of DICOM files
+- Handling multi-series studies
+- Quality control and filtering
+- Creating balanced training sets
+
+**2. Model Development**:
+- Transfer learning from ImageNet vs. medical pre-training
+- Architectures for 2D (ResNet, EfficientNet) vs. 3D (3D U-Net, nnU-Net)
+- Handling class imbalance
+- Augmentation strategies for medical images
+
+**3. Validation & Testing**:
+- Proper train/val/test splits
+- Cross-validation strategies
+- External validation on different scanners
+- Subgroup analysis for fairness
+
+**4. Deployment**:
+- Model packaging (ONNX, TorchScript)
+- Inference optimization (quantization, pruning)
+- Integration with PACS via DICOM
+- Monitoring model performance in production
+
+**Hands-On Exercise**:
+Built a chest X-ray pneumonia detector end-to-end:
+- Fine-tuned DenseNet on CheXpert dataset
+- Achieved 0.89 AUC on validation set
+- Exported to ONNX format
+- Simulated DICOM workflow integration
+
+**Key Learning**: End-to-end thinking from day one—consider deployment constraints during development, not as an afterthought.
+
+### Tutorial: "FHIR ImagingStudy: Bridging Radiology and the EHR"
+
+**Instructor**: HL7 FHIR Working Group Member
+
+**Focus**: Using FHIR to make imaging data more accessible beyond radiology
+
+**FHIR ImagingStudy Resource**:
+- Represents a radiology study
+- Links to DICOM instances
+- Includes metadata (modality, anatomy, procedure)
+- Can be queried via standard FHIR API
+
+**Use Cases**:
+1. **Clinician Access**: Non-radiologists viewing relevant imaging
+2. **Clinical Decision Support**: Triggering alerts based on imaging
+3. **Population Health**: Aggregate imaging utilization analysis
+4. **Research**: Cohort identification based on imaging criteria
+
+**Implementation Example**:
+```json
+{
+  "resourceType": "ImagingStudy",
+  "id": "example",
+  "status": "available",
+  "modality": [{
+    "system": "http://dicom.nema.org/resources/ontology/DCM",
+    "code": "CT"
+  }],
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "started": "2025-06-08T09:30:00Z",
+  "numberOfSeries": 1,
+  "numberOfInstances": 512,
+  "series": [...]
+}
+```
+
+**Connection to AuDRA-Rad**: My project uses FHIR to integrate radiology findings with EHR—this tutorial provided implementation guidance and best practices.
+
+## Poster Session Highlights
+
+### Standout Posters
+
+**"Federated Learning for Multi-Site CT Reconstruction"**
+- Trained noise reduction models across sites without sharing images
+- Addressed variation in scanner protocols and patient populations
+- Achieved comparable performance to centralized training
+
+**"AI-Powered Radiology Report Quality Metrics"**
+- NLP to assess report completeness, clarity, actionability
+- Identified common documentation gaps
+- Provided real-time feedback to radiologists
+- Improved report quality scores by 23%
+
+**"Patient-Facing Radiology Report Summaries"**
+- LLM-generated plain language summaries
+- Validated by radiologists and patient focus groups
+- Improved patient understanding and satisfaction
+- Reduced patient portal messages asking for clarification
+
+### My Conversations
+
+**Most Impactful Discussion**: Spoke with radiology AI lead from Johns Hopkins about their approach to change management
+- Emphasized early radiologist involvement in AI selection
+- Importance of transparent performance metrics
+- Regular feedback loops and continuous improvement
+- Champions within radiology department crucial for adoption
+
+**Collaboration Opportunity**: Connected with a startup building radiology workflow analytics tools—potential synergy with my CT Throughput Optimizer work.
+
+## Industry Exhibition
+
+### Vendor Highlights
+
+**AI Companies**:
+- Aidoc (triage and detection across multiple modalities)
+- Zebra Medical Vision (comprehensive AI suite)
+- Viz.ai (stroke and neurovascular emergencies)
+- RADLogics (lung nodule tracking)
+
+**PACS & RIS Vendors**:
+- GE Healthcare (unified imaging platform)
+- Philips Healthcare (IntelliSpace PACS)
+- Sectra (enterprise imaging)
+- Fujifilm (Synapse PACS)
+
+**Emerging Players**:
+- Cloud PACS startups (Ambra Health, INFINITT)
+- Structured reporting tools (Nuance, Powerscribe)
+- Imaging AI platforms (MD.ai, Arterys)
+
+**Trends Observed**:
+- Shift toward platform plays (integrated suites) vs. point solutions
+- Cloud-first architectures becoming standard
+- AI embedded into PACS natively, not bolted on
+- Focus on workflow optimization, not just diagnostic accuracy
+
+## Networking & Community
+
+### Connections Made
+
+- **Radiologists**: Including SIIM leadership and AI early adopters
+- **PACS Administrators**: Discussing integration challenges
+- **AI Researchers**: From academic medical centers
+- **Industry**: Product managers from leading vendors
+- **Fellow Attendees**: Building long-term relationships
+
+### Social Events
+
+**Welcome Reception**: Networking at the Country Music Hall of Fame
+**SIIM Annual Meeting & Awards Dinner**: Celebrating excellence in imaging informatics
+**Special Interest Group Meetups**: AI in Radiology, Quantitative Imaging
+
+## Key Takeaways
+
+### Technical Insights
+
+1. **Integration is the Hard Part**: Most AI failures are integration/workflow issues, not accuracy
+2. **Radiologists Need to Own AI**: Passively receiving vendor AI doesn't work—active involvement required
+3. **Monitoring Never Ends**: Model performance must be tracked continuously
+4. **Cloud is Coming**: But migration is complex—plan carefully
+5. **Structured Data is Gold**: Moving beyond free-text reports unlocks downstream value
+
+### Strategic Lessons
+
+1. **Start Small, Prove Value**: Pilot with one AI tool, demonstrate ROI, then expand
+2. **Engage Early & Often**: Radiologist buy-in from the start, not after deployment
+3. **Measure What Matters**: Track clinical outcomes and efficiency, not just technical metrics
+4. **Plan for Change Management**: Technology is only 20% of the challenge
+5. **Build for the Long Term**: AI deployment is a program, not a project
+
+### Applications to My Projects
+
+**AuDRA-Rad**:
+- Implement FHIR ImagingStudy for EHR integration
+- Design monitoring dashboard based on Mass General's experience
+- Plan change management strategy alongside technical development
+
+**CT Throughput Optimizer**:
+- Apply lessons from cloud PACS regarding scalability
+- Incorporate workflow analytics insights from posters
+- Build orchestration layer for multi-site deployment
+
+**Radiology Report Summarization**:
+- Leverage structured reporting NLP techniques from Cleveland Clinic
+- Implement patient-facing summaries similar to poster presentation
+- Explore integration with voice recognition systems
+
+## Reflection
+
+SIIM 2025 provided a comprehensive view of the current state and future direction of imaging informatics. The conference made clear that AI in radiology has moved from "if" to "how"—the question is no longer whether AI will be adopted, but rather how to deploy it effectively, integrate it seamlessly, and ensure it actually improves care.
+
+Most valuable were the practical deployment insights from organizations already running AI in production. These real-world lessons—about integration challenges, workflow design, radiologist engagement, and monitoring—are invaluable as I work on my own radiology AI projects.
+
+The community aspect was equally important. SIIM brings together practitioners solving similar problems, creating opportunities for collaboration, knowledge sharing, and mutual support. The connections made will undoubtedly shape my future work.
+
+## Looking Forward
+
+### Immediate Actions
+
+1. **Join SIIM**: Become active member and contribute to working groups
+2. **Implement FHIR**: Add ImagingStudy resources to AuDRA-Rad
+3. **Follow Up**: Connect with potential collaborators from the conference
+4. **Share Learnings**: Present insights to my team and integrate into projects
+5. **Submit to SIIM 2026**: Propose presentation on AuDRA-Rad or CT Optimizer
+
+### Long-Term Goals
+
+1. **Present at SIIM**: Share my work with the imaging informatics community
+2. **Publish in JDI**: Journal of Digital Imaging, official SIIM journal
+3. **Contribute to Standards**: Participate in DICOM and FHIR imaging working groups
+4. **Mentor Students**: Help next generation entering imaging informatics
+5. **Stay Connected**: Engage with SIIM community year-round via webinars and forums
+
+The future of radiology is being built today, by practitioners who understand both the technology and the clinical reality. SIIM 2025 reinforced my commitment to contributing to that future through thoughtful, practical, clinician-centered AI development.
+
+---
+
+*Conference Resources*:
+- SIIM Website: [siim.org](https://siim.org)
+- Presentations: Available on SIIM Connect platform
+- Recorded Sessions: Accessible to members
+- Community Forums: Ongoing discussions on SIIM.org
