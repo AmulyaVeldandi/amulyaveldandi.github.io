@@ -122,7 +122,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <NeuralBackground />
           <Navigation links={navLinks} />
           <div className="relative z-10 flex min-h-screen flex-col">
-            <main className="flex-1 w-full max-w-7xl mx-auto px-4 pb-12 pt-20 sm:px-6 lg:px-6">{children}</main>
+            <main className="flex-1 w-full max-w-7xl mx-auto px-4 pb-8 pt-20 sm:px-6 lg:px-8">{children}</main>
             <Footer />
           </div>
           <Toaster />

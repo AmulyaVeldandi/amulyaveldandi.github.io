@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="pb-24 space-y-16">
+    <div className="space-y-8 lg:space-y-10">
       <div className="sr-only">
         <h1>Work Experience and Case Studies</h1>
       </div>

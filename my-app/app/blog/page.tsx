@@ -21,19 +21,19 @@ export default function BlogPage() {
   const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <div className="pb-24 space-y-12">
+    <div className="space-y-8 lg:space-y-10">
       {/* Hero Section */}
-      <AnimatedSection className="space-y-6">
+      <AnimatedSection className="space-y-4 lg:space-y-5">
         <div className="flex items-center gap-3">
           <Badge variant="neutral">Blog</Badge>
           <span className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">
             {blogPosts.length} {blogPosts.length === 1 ? "Post" : "Posts"}
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-[var(--foreground)] sm:text-5xl lg:text-6xl">
+        <h1 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl lg:text-4xl">
           Thoughts & Reflections
         </h1>
-        <p className="max-w-3xl text-lg text-[var(--muted)] leading-relaxed">
+        <p className="max-w-3xl text-sm text-[var(--muted)] leading-relaxed sm:text-base">
           Writing about health informatics, medical imaging AI, clinical decision support systems, and lessons
           learned from conferences, datathons, and research in healthcare technology.
         </p>
@@ -52,11 +52,11 @@ export default function BlogPage() {
       </AnimatedSection>
 
       {/* Blog Posts Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
         {sortedPosts.map((post) => (
           <AnimatedSection key={post.slug}>
             <Link href={`/blog/${post.slug}`} className="block h-full group">
-              <Card className="p-6 h-full flex flex-col transition-all duration-300 hover:border-[var(--accent)] hover:shadow-lg">
+              <Card className="p-4 h-full flex flex-col transition-all duration-300 hover:border-[var(--accent)] hover:shadow-lg sm:p-5 lg:p-6">
                 {/* Cover Image */}
                 {post.coverImage && (
                   <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden bg-[var(--surface-muted)]">

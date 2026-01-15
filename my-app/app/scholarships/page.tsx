@@ -65,17 +65,17 @@ const scholarships = [
 
 export default function ScholarshipsPage() {
   return (
-    <div className="pb-24 space-y-12">
+    <div className="space-y-8 lg:space-y-10">
       {/* Hero Section */}
-      <AnimatedSection className="space-y-6">
+      <AnimatedSection className="space-y-4 lg:space-y-5">
         <div className="flex items-center gap-3">
           <Badge variant="neutral">Academic Recognition</Badge>
           <span className="text-xs uppercase tracking-[0.35em] text-[var(--muted)]">2023-2025</span>
         </div>
-        <h1 className="text-4xl font-bold text-[var(--foreground)] sm:text-5xl lg:text-6xl">
+        <h1 className="text-2xl font-bold text-[var(--foreground)] sm:text-3xl lg:text-4xl">
           Scholarships & Awards
         </h1>
-        <p className="max-w-3xl text-lg text-[var(--muted)] leading-relaxed">
+        <p className="max-w-3xl text-sm text-[var(--muted)] leading-relaxed sm:text-base">
           Educational grants and scholarships awarded during my Master&apos;s program in Health Informatics at Indiana
           University. These awards enabled me to focus on academic excellence, attend premier conferences, and
           contribute to the healthcare informatics community.
@@ -118,14 +118,14 @@ export default function ScholarshipsPage() {
       </AnimatedSection>
 
       {/* Scholarships List */}
-      <div className="space-y-6">
+      <div className="space-y-4 lg:space-y-5">
         <AnimatedSection>
-          <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-6">Awards & Recognition</h2>
+          <h2 className="text-xl font-semibold text-[var(--foreground)] mb-4 sm:text-2xl">Awards & Recognition</h2>
         </AnimatedSection>
 
         {scholarships.map((scholarship, index) => (
           <AnimatedSection key={index}>
-            <Card className="p-6 lg:p-8">
+            <Card className="p-4 sm:p-5 lg:p-6">
               <div className="space-y-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex-1">
